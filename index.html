@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Benjamin Elliott — Personal Website</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">Benjamin Elliott</h1>
+      <button id="theme-toggle" aria-label="Toggle theme">🌗</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="hero" class="hero">
+      <img src="images/Headshot.jpg" alt="Benjamin Elliott" class="headshot">
+      <h2>Hi — I'm Benjamin Elliott</h2>
+      <p class="lead">A Drexel University Honors political science student focused on democracy, public policy, and political communication.</p>
+      <p>I am interested in how political ideas are shaped, communicated, and challenged in modern society, especially through media and public discourse.</p>
+      <p><a class="btn" href="#contact">Get in touch</a></p>
+    </section>
+
+    <section id="about">
+      <h3>About</h3>
+      <p>I am a political science student at Drexel University in the Honors Program, with academic interests in democratic theory and international relations. My work focuses on understanding how political systems function and how public opinion is shaped in an increasingly polarized environment.</p>
+
+      <p>I currently intern with the campaign for Marcus Roberts-Deloach for Pennsylvania House of Representatives District 10, where I gain hands-on experience in political organizing, outreach, and campaign strategy.</p>
+
+      <p>In addition to my internship, I am preparing to conduct research through Drexel’s STAR Scholars program. My proposed project examines the relationship between political polarization and film in the 21st century, analyzing how media both reflects and influences ideological divides.</p>
+    </section>
+
+    <section id="projects">
+      <h3>Projects & Research</h3>
+      <div class="portfolio-grid">
+        
+        <div class="portfolio-item">
+          <img src="images/Polarization-Film.webp" alt="Political Polarization in Film">
+          <div class="portfolio-content">
+            <h4>Political Polarization in Film</h4>
+            <p>A research project analyzing how top-grossing films reflect and contribute to ideological divisions in the United States since the 1990s.</p>
+            <a href="https://pdflink.to/d3b43e72/" class="portfolio-link">View Project →</a>
+          </div>
+        </div>
+
+        <div class="portfolio-item">
+          <img src="images/Campaign-Internship.avif" alt="Campaign Internship">
+          <div class="portfolio-content">
+            <h4>Campaign Internship Experience</h4>
+            <p>Practical work in voter outreach, messaging, and grassroots organizing for Marcus Roberts-Deloach's Pennsylvania state house campaign.</p>
+            <a href="https://www.marcusrdforpa.com/" class="portfolio-link">Learn More →</a>
+          </div>
+        </div>
+
+        <div class="portfolio-item">
+          <img src="images/Academic-Writing.webp" alt="Academic Writing">
+          <div class="portfolio-content">
+            <h4>Academic Writing Portfolio</h4>
+            <p>A collection of essays and analyses focused on political theory, public policy, media influence, and democratic systems.</p>
+            <a href="https://drive.google.com/drive/folders/1gRPkVG_9RZDDCbkYZUu0G-Peg5Uz7Ipm?usp=drive_link" class="portfolio-link">Read Samples →</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact">
+      <h3>Contact</h3>
+      <p>I am open to academic, research, and professional opportunities. Send me a message below or email directly at <a href="mailto:bre.sochi@gmail.com">bre.sochi@gmail.com</a>.</p>
+      
+      <form action="https://formspree.io/f/mkoqyvvo" method="POST" class="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© <span id="year"></span> Benjamin Elliott — Built with Visual Studio Code.</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
