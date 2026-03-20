@@ -45,6 +45,9 @@ body{margin:0;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;background:v
 .portfolio-link{color:var(--accent);text-decoration:none;font-weight:500;display:inline-block}
 .portfolio-link:hover{text-decoration:underline}
 
+[data-theme='dark'] .portfolio-item{border:2px solid #ffffff}
+[data-theme='dark'] .portfolio-item:hover{box-shadow:0 8px 24px rgba(255,255,255,0.2)}
+
 @media (max-width:600px){
   .container{padding:16px}
   .hero{padding:28px 0}
