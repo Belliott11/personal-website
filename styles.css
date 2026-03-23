@@ -9,7 +9,7 @@
   --bg:#0b1220;
   --text:#e6eef6;
   --muted:#9aa6b2;
-  --accent:#4fc3ff;
+  --accent:#FFD700;
 }
 
 *{box-sizing:border-box}
@@ -44,6 +44,9 @@ body{margin:0;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;background:v
 .portfolio-content p{margin:0 0 14px;color:var(--muted);font-size:0.95rem}
 .portfolio-link{color:var(--accent);text-decoration:none;font-weight:500;display:inline-block}
 .portfolio-link:hover{text-decoration:underline}
+
+a{color:var(--accent);text-decoration:underline}
+a:hover{text-decoration:none}
 
 [data-theme='dark'] .portfolio-item{border:2px solid #ffffff}
 [data-theme='dark'] .portfolio-item:hover{box-shadow:0 8px 24px rgba(255,255,255,0.2)}
