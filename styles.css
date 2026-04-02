@@ -16,16 +16,56 @@
 body{margin:0;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
 .container{max-width:900px;margin:0 auto;padding:24px}
 .site-header{border-bottom:1px solid rgba(0,0,0,0.06)}
+.site-header {
+  background: var(--bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0 24px;
+}
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 12px 0; /* adds breathing room */
 }
 
+.site-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+}
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
+}
+.header-actions img,
+#theme-toggle {
+  width: 28px;       /* uniform size for icons */
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.header-actions img:hover,
+#theme-toggle:hover {
+  transform: translateY(-2px); /* subtle lift effect */
+  filter: brightness(1.2);      /* slightly brighter on hover */
+}
+#theme-toggle {
+  background: none;       /* removes the default background */
+  border: none;           /* removes the button border */
+  padding: 0;             /* removes default padding */
+  margin: 0;              /* optional: removes default margin */
+  font-size: 20px;        /* keep your size */
+  cursor: pointer;        /* makes it clickable like a button */
+  display: inline-flex;   /* align nicely next to icon */
+  align-items: center;    /* vertically centers the emoji */
 }
 .header-actions img {
   height: 20px;
