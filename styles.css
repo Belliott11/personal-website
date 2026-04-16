@@ -161,3 +161,23 @@ a:hover{text-decoration:none}
   width: 20px;
   height: 20px;
 }
+.icon-btn.active {
+  transform: translateY(-2px);
+  filter: brightness(1.4);
+  position: relative;
+}
+
+/* subtle underline dot indicator */
+.icon-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.icon-btn.active {
+  background: rgba(0, 102, 255, 0.12);
+  border-radius: 8px;
+}
