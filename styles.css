@@ -140,3 +140,24 @@ a:hover{text-decoration:none}
   .hero{padding:28px 0}
   .portfolio-grid{grid-template-columns:1fr}
 }
+.icon-btn {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  font-size: 20px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.icon-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.2);
+}
+.icon-btn img {
+  width: 20px;
+  height: 20px;
+}
