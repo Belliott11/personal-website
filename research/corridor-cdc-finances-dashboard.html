@@ -1,0 +1,1500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Balance Sheet of Institutional Memory</title>
+<link rel="icon" href="../images/Corridor-Favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    color-scheme: light;
+    --paper:        #eef1ef;
+    --surface:      #fcfcfb;
+    --surface-2:    #ffffff;
+    --ink:          #14110d;
+    --ink-secondary:#52514e;
+    --ink-muted:    #898781;
+    --hairline:     #e1e0d9;
+    --border:       rgba(11,11,11,0.10);
+    --navy:         #1c3a5e;
+    --navy-strong:  #0f2740;
+    --navy-wash:    rgba(28,58,94,0.07);
+    --gold:         #8a6a1f;
+    --gold-strong:  #6e5417;
+    --gold-wash:    rgba(169,130,47,0.14);
+    --good-text:    #006300;
+    --bad-text:     #8a2f22;
+
+    --series-1: #2a78d6; /* blue */
+    --series-2: #eb6834; /* orange */
+    --series-3: #1baf7a; /* aqua */
+    --series-4: #eda100; /* yellow */
+    --series-5: #e87ba4; /* magenta */
+    --series-6: #008300; /* green */
+    --series-7: #4a3aa7; /* violet */
+    --series-8: #e34948; /* red */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --paper:        #100f0c;
+      --surface:      #1a1a19;
+      --surface-2:    #201f1c;
+      --ink:          #ffffff;
+      --ink-secondary:#c3c2b7;
+      --ink-muted:    #898781;
+      --hairline:     #2c2c2a;
+      --border:       rgba(255,255,255,0.10);
+      --navy:         #7fa8d6;
+      --navy-strong:  #a9c4e6;
+      --navy-wash:    rgba(127,168,214,0.12);
+      --gold:         #d9bd7a;
+      --gold-strong:  #e9d59a;
+      --gold-wash:    rgba(217,189,122,0.14);
+      --good-text:    #0ca30c;
+      --bad-text:     #e08668;
+
+      --series-1: #3987e5;
+      --series-2: #d95926;
+      --series-3: #199e70;
+      --series-4: #c98500;
+      --series-5: #d55181;
+      --series-6: #008300;
+      --series-7: #9085e9;
+      --series-8: #e66767;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper:        #100f0c;
+    --surface:      #1a1a19;
+    --surface-2:    #201f1c;
+    --ink:          #ffffff;
+    --ink-secondary:#c3c2b7;
+    --ink-muted:    #898781;
+    --hairline:     #2c2c2a;
+    --border:       rgba(255,255,255,0.10);
+    --navy:         #7fa8d6;
+    --navy-strong:  #a9c4e6;
+    --navy-wash:    rgba(127,168,214,0.12);
+    --gold:         #d9bd7a;
+    --gold-strong:  #e9d59a;
+    --gold-wash:    rgba(217,189,122,0.14);
+    --good-text:    #0ca30c;
+    --bad-text:     #e08668;
+
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+    --series-5: #d55181;
+    --series-6: #008300;
+    --series-7: #9085e9;
+    --series-8: #e66767;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--gold-wash); }
+  a { color: var(--navy); }
+  h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; text-wrap: balance; margin: 0; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  .page {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+  }
+
+  /* ---------- Header ---------- */
+  header.hero {
+    padding: 64px 0 40px;
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 48px;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--navy-wash);
+    padding: 5px 10px 4px;
+    border-radius: 3px;
+    margin-bottom: 22px;
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex: none; }
+  h1.title {
+    font-size: clamp(34px, 5.4vw, 54px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    max-width: 16ch;
+  }
+  p.dek {
+    font-size: 18px;
+    color: var(--ink-secondary);
+    max-width: 62ch;
+    margin: 20px 0 0;
+  }
+  p.dek b { color: var(--ink); font-weight: 600; }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 36px;
+  }
+  .stat-tile {
+    background: var(--surface);
+    padding: 20px 22px;
+  }
+  .stat-tile .label {
+    font-size: 12px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .stat-tile .value {
+    font-family: "Source Serif 4", serif;
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 6px;
+    font-variant-numeric: proportional-nums;
+  }
+  .stat-tile .sub { font-size: 13px; color: var(--ink-secondary); margin-top: 4px; }
+
+  /* ---------- Sections ---------- */
+  section.block { margin: 76px 0; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .section-num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  h2.section-title {
+    font-size: 25px;
+    font-weight: 600;
+  }
+  p.section-note {
+    color: var(--ink-secondary);
+    max-width: 66ch;
+    margin: 10px 0 28px;
+    font-size: 15px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 26px 28px;
+  }
+
+  /* ---------- Legend ---------- */
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 18px; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-secondary); }
+  .swatch { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+
+  /* ---------- Money race rows ---------- */
+  .race-row { margin-bottom: 18px; }
+  .race-row:last-child { margin-bottom: 0; }
+  .race-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 5px;
+    font-size: 14.5px;
+  }
+  .race-name { font-weight: 600; }
+  .race-name .party { font-weight: 400; color: var(--ink-muted); font-size: 12.5px; margin-left: 6px; }
+  .race-total { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; color: var(--ink-secondary); font-size: 13.5px; }
+  .pill {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 2px 7px 1px;
+    border-radius: 20px;
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+  .pill.win { background: rgba(12,163,12,0.12); color: var(--good-text); }
+  .pill.lose { background: var(--border); color: var(--ink-muted); }
+
+  .bar-track {
+    height: 22px;
+    background: transparent;
+    border-radius: 4px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-seg { height: 100%; }
+  .bar-seg:not(:last-child) { margin-right: 2px; }
+  .bar-seg:first-child { border-top-left-radius: 4px; border-bottom-left-radius: 4px; }
+  .bar-seg:last-child { border-top-right-radius: 4px; border-bottom-right-radius: 4px; }
+
+  /* ---------- Charts (svg) ---------- */
+  svg.chart { width: 100%; height: auto; display: block; overflow: visible; }
+  .axis-line { stroke: var(--hairline); stroke-width: 1; }
+  .axis-text { fill: var(--ink-muted); font-size: 11px; font-family: "IBM Plex Mono", monospace; }
+  .gridline { stroke: var(--hairline); stroke-width: 1; }
+  .ref-line { stroke: var(--ink-muted); stroke-width: 1; stroke-dasharray: 2 3; }
+  .ref-label { fill: var(--ink-muted); font-size: 10.5px; font-family: "IBM Plex Mono", monospace; }
+  .line-path { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .end-dot { stroke: var(--surface); stroke-width: 2; }
+  .end-label { font-size: 12px; font-family: "IBM Plex Sans", sans-serif; font-weight: 600; }
+
+  .tooltip {
+    position: fixed;
+    pointer-events: none;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 12.5px;
+    padding: 8px 11px;
+    border-radius: 5px;
+    line-height: 1.45;
+    max-width: 240px;
+    opacity: 0;
+    transform: translate(-50%, -100%);
+    transition: opacity .1s;
+    z-index: 50;
+  }
+  .tooltip b { display: block; margin-bottom: 2px; }
+  .tooltip .row { display: flex; justify-content: space-between; gap: 12px; }
+
+  details.table-toggle { margin-top: 18px; }
+  details.table-toggle summary {
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--navy);
+    font-weight: 500;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  details.table-toggle summary::-webkit-details-marker { display: none; }
+  details.table-toggle summary::before { content: "▸"; font-size: 10px; }
+  details.table-toggle[open] summary::before { content: "▾"; }
+
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    font-size: 13.5px;
+  }
+  table.data-table th, table.data-table td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  table.data-table th { color: var(--ink-muted); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+  table.data-table td.num, table.data-table th.num { text-align: right; font-family: "IBM Plex Mono", monospace; }
+
+  /* ---------- Geography stacked ---------- */
+  .geo-row { display: grid; grid-template-columns: 148px 1fr 46px; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .geo-name { font-size: 13.5px; font-weight: 600; }
+  .geo-total { font-size: 12px; color: var(--ink-muted); font-family: "IBM Plex Mono", monospace; text-align: right; }
+  .geo-bar { display: flex; height: 16px; border-radius: 3px; overflow: hidden; }
+  .geo-seg:not(:last-child) { margin-right: 2px; }
+
+  /* ---------- Donor explorer ---------- */
+  .explorer {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 28px;
+  }
+  @media (max-width: 760px) { .explorer { grid-template-columns: 1fr; } }
+  select.cand-select {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 9px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--hairline);
+    background: var(--surface-2);
+    color: var(--ink);
+    width: 100%;
+    margin-bottom: 4px;
+  }
+  .explorer-meta { font-size: 13px; color: var(--ink-secondary); margin: 10px 0 16px; }
+  .panel-title { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-muted); margin-bottom: 12px; }
+
+  /* ---------- Citywide bars ---------- */
+  .office-row { display: grid; grid-template-columns: 168px 1fr 90px; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 13.5px; }
+  .office-name { font-weight: 500; }
+  .office-bar-track { height: 14px; background: transparent; }
+  .office-bar { height: 100%; border-radius: 3px; background: var(--series-1); }
+  .office-value { text-align: right; font-family: "IBM Plex Mono", monospace; color: var(--ink-secondary); }
+
+  /* ---------- Council: at-large ---------- */
+  .cutoff-wrap { position: relative; }
+  .cutoff-line {
+    position: absolute;
+    border-left: 1px dashed var(--ink-muted);
+    top: -6px; bottom: 24px;
+    pointer-events: none;
+  }
+  .cutoff-label {
+    position: absolute;
+    top: -22px;
+    font-size: 10.5px;
+    font-family: "IBM Plex Mono", monospace;
+    color: var(--ink-muted);
+    transform: translateX(-100%);
+    white-space: nowrap;
+    padding-right: 6px;
+  }
+  .al-row { display: grid; grid-template-columns: 200px 1fr 74px; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .al-name { font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .al-name .party-tag { font-weight: 400; color: var(--ink-muted); font-size: 11.5px; }
+  .al-bar-track { height: 14px; border-radius: 3px; overflow: hidden; background: transparent; }
+  .al-bar { height: 100%; border-radius: 3px; }
+  .al-bar.lost { opacity: 0.38; }
+  .al-value { text-align: right; font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--ink-secondary); }
+
+  /* ---------- Council: districts ---------- */
+  .district-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media (max-width: 760px) { .district-grid { grid-template-columns: 1fr; } }
+  .district-card {
+    border: 1px solid var(--hairline);
+    border-radius: 7px;
+    padding: 16px 18px;
+  }
+  .district-card h4 { font-size: 14px; margin: 0 0 6px; font-weight: 600; }
+  .district-card .d-note { font-size: 12.5px; color: var(--ink-secondary); margin-bottom: 12px; line-height: 1.5; }
+  .d-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; margin-bottom: 7px; font-size: 12.5px; }
+  .d-row .d-name { font-weight: 500; }
+  .d-row .d-name.lost { color: var(--ink-muted); font-weight: 400; }
+  .d-row .d-val { font-family: "IBM Plex Mono", monospace; color: var(--ink-secondary); }
+  .d-bar-track { grid-column: 1 / -1; height: 10px; border-radius: 2px; overflow: hidden; }
+  .d-bar { height: 100%; border-radius: 2px; }
+  .d-bar.lost { opacity: 0.38; }
+  .district-uncontested { font-size: 13px; color: var(--ink-secondary); }
+  .district-uncontested ul { margin: 8px 0 0; padding-left: 18px; }
+  .district-uncontested li { margin-bottom: 5px; }
+
+  /* ---------- Corridor: sector/pay/signals/tax-credit ---------- */
+  .chart-caption {
+    font-size: 12px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 28px 0 10px;
+  }
+  .sig-row { display: grid; grid-template-columns: 220px 1fr 84px; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .sig-name { font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .sig-name .sub { font-weight: 400; color: var(--ink-muted); font-size: 11.5px; }
+  .sig-bar-track { height: 14px; border-radius: 3px; overflow: hidden; }
+  .sig-bar { height: 100%; border-radius: 3px; background: var(--series-1); }
+  .sig-bar.closure { background: var(--series-8); }
+  .sig-value { text-align: right; font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--ink-secondary); }
+
+  .tc-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 22px;
+  }
+  .tc-tile { background: var(--surface); padding: 16px 20px; }
+  .tc-tile .tc-label { font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .tc-tile .tc-value { font-family: "Source Serif 4", serif; font-size: 26px; font-weight: 600; margin-top: 5px; }
+  .tc-tile .tc-sub { font-size: 12.5px; color: var(--ink-secondary); margin-top: 3px; }
+
+  footer.methodology {
+    border-top: 1px solid var(--hairline);
+    padding-top: 36px;
+    margin-top: 80px;
+    font-size: 13.5px;
+    color: var(--ink-secondary);
+  }
+  footer.methodology h3 { font-size: 15px; margin-bottom: 14px; color: var(--ink); }
+  footer.methodology ol { padding-left: 20px; margin: 0 0 20px; }
+  footer.methodology li { margin-bottom: 8px; }
+  footer.methodology .credit { margin-top: 24px; color: var(--ink-muted); font-size: 12.5px; }
+  footer.methodology .credit a { color: var(--ink-muted); text-decoration-color: var(--border); }
+
+  @media (max-width: 620px) {
+    .stat-row { grid-template-columns: 1fr; }
+    header.hero { padding-top: 44px; }
+    .geo-row { grid-template-columns: 1fr; }
+    .geo-total { text-align: left; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="eyebrow"><span class="dot"></span>Corridor &middot; Philadelphia CDC dataset &middot; 2011&ndash;2023 financials</div>
+    <h1 class="title">The Balance Sheet of Institutional Memory</h1>
+    <p class="dek">A companion piece to <i>Tracing Institutional Memory</i>, a STAR research project that found the median completed tenure of a Philadelphia CDC executive director is just <b>two years</b>. That project was built on interviews and hand-verified leadership histories; this one asks what the money says. Built on Form 990 filings for 103 Philadelphia community development corporations.</p>
+    <div class="stat-row" id="stat-row"></div>
+  </header>
+
+  <section class="block" id="sec-sector">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Sector Growth, On Paper</h2>
+    </div>
+    <p class="section-note">Total revenue, expenses, and assets reported across every CDC-year on file, 2011&ndash;2023. The sector looks steadily healthier by every measure &mdash; but the second chart shows why that number is partly an illusion: more organizations simply started showing up in the data.</p>
+    <div class="card">
+      <div class="legend" id="sector-legend"></div>
+      <div id="sector-chart"></div>
+      <p class="chart-caption">Organizations with a Form 990 on file for that year, out of 103 catalogued</p>
+      <div id="coverage-chart"></div>
+    </div>
+  </section>
+
+  <section class="block" id="sec-pay">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Who Gets Paid, and How Much</h2>
+    </div>
+    <p class="section-note">Every executive director's reported compensation against their organization's latest revenue (log scale &mdash; the range runs from under $100K to $74M). <b>18 of the 57</b> EDs with a title match on file report <b>$0</b> in compensation.</p>
+    <div class="card">
+      <div id="pay-chart"></div>
+    </div>
+  </section>
+
+  <section class="block" id="sec-signals">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Where Institutional Memory Is Under Strain</h2>
+    </div>
+    <p class="section-note">An instability score built from two signals in each organization's filing history: years with an abrupt shift in officer compensation (often a leadership change happening off the record) and years with no 990 on file at all. Higher means more turbulence. Yorktown CDC's score of 13 is more than double the next-highest organization's.</p>
+    <div class="card">
+      <div class="legend" id="signals-legend"></div>
+      <div id="signals-chart"></div>
+      <details class="table-toggle">
+        <summary>View as table</summary>
+        <div style="overflow-x:auto"><table class="data-table" id="signals-table"></table></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="block" id="sec-closure">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">The Ones That Went Dark &mdash; Verified</h2>
+    </div>
+    <p class="section-note">Six organizations whose filing history &mdash; a stopped 990, a multi-year gap, or both &mdash; flagged them as likely inactive. Rather than publish that inference as fact, each one was checked by hand against ProPublica's live organization records and public reporting. <b>Only half held up.</b> Two are demonstrably still operating (one filed a 990 as recently as this year), and a third is a small, still-active civic association that simply doesn't file full financial paperwork. That's the honest result of this method: a stale-filing signal is a lead worth checking, not proof of closure.</p>
+    <div class="card">
+      <p class="chart-caption">Confirmed closed</p>
+      <div class="district-grid" id="closure-grid-closed"></div>
+      <p class="chart-caption">Flagged by the heuristic, but confirmed still active on verification</p>
+      <div class="district-grid" id="closure-grid-active"></div>
+    </div>
+  </section>
+
+  <section class="block" id="sec-taxcredit">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Does the City's Tax Credit Help Orgs Survive?</h2>
+    </div>
+    <p class="section-note">Philadelphia's CDC Tax Credit program subsidizes participating organizations' operating costs. The honest answer, in this sample, is: not obviously. Recently-filing rates are nearly identical whether or not an org is in the program &mdash; institutional survival looks like it depends on other things.</p>
+    <div class="card">
+      <div id="taxcredit-chart"></div>
+      <div class="tc-compare" id="tc-compare"></div>
+    </div>
+  </section>
+
+  <footer class="methodology">
+    <h3>Data &amp; methods</h3>
+    <ol>
+      <li><b>Source.</b> This analysis runs on <a href="https://github.com/AdamMirmina/corridor" target="_blank" rel="noopener">Corridor</a>, a Philadelphia CDC dataset built in collaboration with Adam Mirmina (<a href="https://corridor-phl.vercel.app" target="_blank" rel="noopener">corridor-phl.vercel.app</a>). It catalogues 103 Philadelphia community development corporations from three sources: a hand-compiled research roster (70 orgs, with follow-up research into founding years and leadership history), Temple University Special Collections Research Center finding aids (29 orgs), and the City of Philadelphia's own CDC Tax Credit program participant list.</li>
+      <li><b>Financial and current-leadership data</b> (this page's entire basis) comes from IRS Form 990 filings via the <a href="https://projects.propublica.org/nonprofits/" target="_blank" rel="noopener">ProPublica Nonprofit Explorer API</a>, fuzzy-matched to the roster and confidence-scored rather than guessed. 760 organization-year financial records, 2008&ndash;2024 (2024 excluded from charts here &mdash; only 2 orgs had filed by the time this data was pulled).</li>
+      <li><b>The honest limitation:</b> ProPublica's officer/board data reflects each organization's <i>latest</i> 990, not a full year-by-year history &mdash; there is no free, lightweight way to pull historical Form 990 Part VII names at scale (the AWS 990 mirror was retired; IRS per-file XML URLs 404; ProPublica blocks scripted PDF downloads). The "instability score" here is a financial-filing proxy, not a confirmed leadership-change count. Where a fuller, name-level leadership history exists, it comes from direct research by hand &mdash; that's the companion qualitative project, <i>Tracing Institutional Memory</i>, not this one.</li>
+      <li><b>Closure candidates</b> are inferred from filing gaps and stale "last year filed" dates, not confirmed dissolution filings &mdash; and that inference is only half-reliable. Of the 6 organizations the Signals sheet flagged, direct verification against ProPublica's live organization pages and public reporting confirmed 3 as genuinely closed, found 2 to be filing and operating normally as recently as fiscal year 2025, and found 1 (HMC Squared Community Association) to be a small, still-active civic association that simply doesn't file full financial paperwork. Section 04 reports only the verified result, not the raw flag. One confirmed-closed organization shows negative reported revenue in its final year on file &mdash; most likely a reporting anomaly in the source 990, kept here rather than silently corrected.</li>
+      <li><b>Tax credit comparison</b> compares 2023-or-later filing rates between the 28 roster organizations flagged as tax-credit-active and the 42 that aren't. Sample sizes are small and this is an observational comparison, not a causal one.</li>
+    </ol>
+    <div class="credit">Built by Benjamin Elliott, on the Corridor dataset with Adam Mirmina &middot; analysis in Python (pandas), chart code hand-rolled in vanilla JS/SVG.</div>
+  </footer>
+
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script id="corridor-data-blob" type="application/json">
+{
+  "sector_timeline": [
+    {
+      "year": 2011,
+      "n_orgs": 52,
+      "total_revenue": 93761416.0,
+      "total_expenses": 88370491.0,
+      "total_assets": 235954955.0
+    },
+    {
+      "year": 2012,
+      "n_orgs": 55,
+      "total_revenue": 108304792.0,
+      "total_expenses": 102784775.0,
+      "total_assets": 242583918.0
+    },
+    {
+      "year": 2013,
+      "n_orgs": 52,
+      "total_revenue": 130732490.0,
+      "total_expenses": 114894831.0,
+      "total_assets": 258397368.0
+    },
+    {
+      "year": 2014,
+      "n_orgs": 54,
+      "total_revenue": 128475436.0,
+      "total_expenses": 119557777.0,
+      "total_assets": 321528619.0
+    },
+    {
+      "year": 2015,
+      "n_orgs": 56,
+      "total_revenue": 152069055.0,
+      "total_expenses": 138832768.0,
+      "total_assets": 343488314.0
+    },
+    {
+      "year": 2016,
+      "n_orgs": 57,
+      "total_revenue": 160469082.0,
+      "total_expenses": 160331787.0,
+      "total_assets": 366335388.0
+    },
+    {
+      "year": 2017,
+      "n_orgs": 55,
+      "total_revenue": 167254419.0,
+      "total_expenses": 158448924.0,
+      "total_assets": 391721458.0
+    },
+    {
+      "year": 2018,
+      "n_orgs": 58,
+      "total_revenue": 168636251.0,
+      "total_expenses": 139504121.0,
+      "total_assets": 422022210.0
+    },
+    {
+      "year": 2019,
+      "n_orgs": 61,
+      "total_revenue": 164961837.0,
+      "total_expenses": 154036024.0,
+      "total_assets": 442021417.0
+    },
+    {
+      "year": 2020,
+      "n_orgs": 61,
+      "total_revenue": 170005108.0,
+      "total_expenses": 154324926.0,
+      "total_assets": 442990605.0
+    },
+    {
+      "year": 2021,
+      "n_orgs": 60,
+      "total_revenue": 193696651.0,
+      "total_expenses": 177772900.0,
+      "total_assets": 464562463.0
+    },
+    {
+      "year": 2022,
+      "n_orgs": 63,
+      "total_revenue": 214010479.0,
+      "total_expenses": 175866949.0,
+      "total_assets": 525859155.0
+    },
+    {
+      "year": 2023,
+      "n_orgs": 61,
+      "total_revenue": 241746596.0,
+      "total_expenses": 200279669.0,
+      "total_assets": 642783891.0
+    }
+  ],
+  "pay_landscape": [
+    {
+      "org": "Esperanza",
+      "ed_name": "Reverend Luis Cortes Jr",
+      "compensation": 396023,
+      "latest_revenue": 13454615.0
+    },
+    {
+      "org": "Asociaci\u00f3n Puertorrique\u00f1os en Marcha (APM)",
+      "ed_name": "Nilda I Ruiz",
+      "compensation": 350774,
+      "latest_revenue": 33613538.0
+    },
+    {
+      "org": "ProjectHOME",
+      "ed_name": "S Mary Scullion Rsm",
+      "compensation": 319389,
+      "latest_revenue": 73793942.0
+    },
+    {
+      "org": "Impact Services Corporation",
+      "ed_name": "Casey O'donnell",
+      "compensation": 248675,
+      "latest_revenue": 13359196.0
+    },
+    {
+      "org": "Habitat for Humanity Philadelphia",
+      "ed_name": "Corinne O'connell",
+      "compensation": 226043,
+      "latest_revenue": 8309601.0
+    },
+    {
+      "org": "Smart Futures CDC",
+      "ed_name": "David J Mosey",
+      "compensation": 224542,
+      "latest_revenue": 1561341.0
+    },
+    {
+      "org": "Friends Rehabilitation Program",
+      "ed_name": "Andrew Anderson",
+      "compensation": 220433,
+      "latest_revenue": 6289212.0
+    },
+    {
+      "org": "Nicetown CDC",
+      "ed_name": "Zakariyya Abdur Rahman",
+      "compensation": 183173,
+      "latest_revenue": 3092233.0
+    },
+    {
+      "org": "Xiente",
+      "ed_name": "Michelle Carrera",
+      "compensation": 178453,
+      "latest_revenue": 9936492.0
+    },
+    {
+      "org": "HopePHL",
+      "ed_name": "Kathleen Desmond",
+      "compensation": 176533,
+      "latest_revenue": 8006243.0
+    },
+    {
+      "org": "ACHIEVEability",
+      "ed_name": "Jamila Harris-morrison",
+      "compensation": 176423,
+      "latest_revenue": 842709.0
+    },
+    {
+      "org": "Lancaster Avenue 21st Century Business Association CDC (LA21)",
+      "ed_name": "Kwaku Boateng",
+      "compensation": 173500,
+      "latest_revenue": 935900.0
+    },
+    {
+      "org": "Inglis Housing Corporation",
+      "ed_name": "Heidi Bohn",
+      "compensation": 164657,
+      "latest_revenue": 695036.0
+    },
+    {
+      "org": "New Kensington CDC",
+      "ed_name": "William Mckinney",
+      "compensation": 163057,
+      "latest_revenue": 3943941.0
+    },
+    {
+      "org": "Kensington Area Revitalization Project",
+      "ed_name": "Marc D Collazzo",
+      "compensation": 150719,
+      "latest_revenue": 883529.0
+    },
+    {
+      "org": "Women's Community Revitalization Project (WCRP)",
+      "ed_name": "Nora Lichtash -former",
+      "compensation": 136631,
+      "latest_revenue": 11408395.0
+    },
+    {
+      "org": "Mt. Airy CDC",
+      "ed_name": "Philip Dawson",
+      "compensation": 133900,
+      "latest_revenue": 1649524.0
+    },
+    {
+      "org": "Community Ventures",
+      "ed_name": "David Lafontaine",
+      "compensation": 131284,
+      "latest_revenue": 1640458.0
+    },
+    {
+      "org": "Allegheny West Foundation",
+      "ed_name": "Ronald Hinton",
+      "compensation": 124604,
+      "latest_revenue": 1355545.0
+    },
+    {
+      "org": "Frankford CDC",
+      "ed_name": "Kimberly Washington",
+      "compensation": 123654,
+      "latest_revenue": 3208911.0
+    },
+    {
+      "org": "African Cultural Alliance of North America",
+      "ed_name": "Voffee Jabateh",
+      "compensation": 122646,
+      "latest_revenue": 2613278.0
+    },
+    {
+      "org": "Beech Interplex",
+      "ed_name": "Kenneth Scott",
+      "compensation": 120000,
+      "latest_revenue": 4055112.0
+    },
+    {
+      "org": "Village of Arts and Humanities",
+      "ed_name": "Ineda Elmore Stratton",
+      "compensation": 119539,
+      "latest_revenue": 5130521.0
+    },
+    {
+      "org": "Southwest CDC",
+      "ed_name": "Donna Henry",
+      "compensation": 101721,
+      "latest_revenue": 1870132.0
+    },
+    {
+      "org": "The Maple Corporation",
+      "ed_name": "Jacquelyn Sims",
+      "compensation": 95007,
+      "latest_revenue": 205245.0
+    },
+    {
+      "org": "Roxborough Development Corporation",
+      "ed_name": "Jax Cusack",
+      "compensation": 92900,
+      "latest_revenue": 793385.0
+    },
+    {
+      "org": "Philadelphia Chinatown Development Corporation",
+      "ed_name": "Mr John Chin",
+      "compensation": 86116,
+      "latest_revenue": 2537285.0
+    },
+    {
+      "org": "Partnership CDC",
+      "ed_name": "Steven Williams",
+      "compensation": 79619,
+      "latest_revenue": 381694.0
+    },
+    {
+      "org": "East Falls Development Corporation",
+      "ed_name": "Michelle Feldman",
+      "compensation": 77449,
+      "latest_revenue": 271935.0
+    },
+    {
+      "org": "Centennial Parkside CDC",
+      "ed_name": "Jessi Ray Koch",
+      "compensation": 77289,
+      "latest_revenue": 812649.0
+    },
+    {
+      "org": "Lower North Philadelphia CDC",
+      "ed_name": "Darnetta Arce",
+      "compensation": 75000,
+      "latest_revenue": 52494.0
+    },
+    {
+      "org": "Strawberry Mansion CDC",
+      "ed_name": "Tonnetta Graham",
+      "compensation": 75000,
+      "latest_revenue": 344040.0
+    },
+    {
+      "org": "Fairmount CDC",
+      "ed_name": "Patrick Sherlock",
+      "compensation": 74938,
+      "latest_revenue": 623034.0
+    },
+    {
+      "org": "West Oak Lane CDC",
+      "ed_name": "Donald T Stafford",
+      "compensation": 46501,
+      "latest_revenue": 257628.0
+    },
+    {
+      "org": "Germantown United CDC",
+      "ed_name": "Emaleigh Doley",
+      "compensation": 44000,
+      "latest_revenue": 606368.0
+    },
+    {
+      "org": "Korean Community Development Services Center",
+      "ed_name": "Don Yu",
+      "compensation": 35385,
+      "latest_revenue": 1710276.0
+    },
+    {
+      "org": "Spring Garden CDC",
+      "ed_name": "Patricia Freeland",
+      "compensation": 18750,
+      "latest_revenue": 1337844.0
+    },
+    {
+      "org": "Urban Resources Development Corporation",
+      "ed_name": "Joseph Waldo",
+      "compensation": 10285,
+      "latest_revenue": 109445.0
+    },
+    {
+      "org": "Sister Clara Muhammad CDC",
+      "ed_name": "Roger Powe",
+      "compensation": 8100,
+      "latest_revenue": 44388.0
+    },
+    {
+      "org": "Arab-American CDC",
+      "ed_name": "Asif Hussein",
+      "compensation": 0,
+      "latest_revenue": 235996.0
+    },
+    {
+      "org": "Chestnut Hill CDC",
+      "ed_name": "Richard Snowden",
+      "compensation": 0,
+      "latest_revenue": 78725.0
+    },
+    {
+      "org": "Community of Compassion CDC",
+      "ed_name": "W Lonnie Herndon",
+      "compensation": 0,
+      "latest_revenue": 198846.0
+    },
+    {
+      "org": "Empowered CDC",
+      "ed_name": "Xeyah T Martin",
+      "compensation": 0,
+      "latest_revenue": 142834.0
+    },
+    {
+      "org": "Mt. Vernon Manor CDC",
+      "ed_name": "Robert Madden",
+      "compensation": 0,
+      "latest_revenue": 285039.0
+    },
+    {
+      "org": "Newbold CDC",
+      "ed_name": "Timothy Lidiak",
+      "compensation": 0,
+      "latest_revenue": 6708.0
+    },
+    {
+      "org": "Old City District",
+      "ed_name": "Stephen Tornone",
+      "compensation": 0,
+      "latest_revenue": 11342.0
+    },
+    {
+      "org": "Overbrook West Neighbors CDC",
+      "ed_name": "Gregory Allen",
+      "compensation": 0,
+      "latest_revenue": 410265.0
+    },
+    {
+      "org": "South Kensington Community Partners",
+      "ed_name": "Eileen Divringi",
+      "compensation": 0,
+      "latest_revenue": 338847.0
+    },
+    {
+      "org": "Tacony CDC",
+      "ed_name": "Georgeanne Huff-labovitz",
+      "compensation": 0,
+      "latest_revenue": 414614.0
+    },
+    {
+      "org": "The Enterprise Center CDC",
+      "ed_name": "Della Clark",
+      "compensation": 0,
+      "latest_revenue": 3539141.0
+    },
+    {
+      "org": "Tioga United",
+      "ed_name": "David Smith",
+      "compensation": 0,
+      "latest_revenue": 383077.0
+    },
+    {
+      "org": "Francisville Neighborhood Development Corporation",
+      "ed_name": "Penelope Giles",
+      "compensation": 0,
+      "latest_revenue": 708650.0
+    },
+    {
+      "org": "Faith CDC",
+      "ed_name": "Mehboob Khan",
+      "compensation": 0,
+      "latest_revenue": 488157.0
+    },
+    {
+      "org": "Mt. Airy Village Development Corporation",
+      "ed_name": "Isaac Ewell",
+      "compensation": 0,
+      "latest_revenue": 583956.0
+    },
+    {
+      "org": "Yorktown CDC",
+      "ed_name": "Renee V Drayton",
+      "compensation": 0,
+      "latest_revenue": 184758.0
+    },
+    {
+      "org": "Tenth Memorial Non-Profit Development Corporation",
+      "ed_name": "Rev William B Moore",
+      "compensation": 0,
+      "latest_revenue": 1034456.0
+    },
+    {
+      "org": "Olde Kensington Redevelopment Corporation",
+      "ed_name": "John Williams",
+      "compensation": 0,
+      "latest_revenue": 5114.0
+    }
+  ],
+  "pay_summary": {
+    "n_paid": 39,
+    "n_unpaid": 18
+  },
+  "instability": [
+    {
+      "org": "Yorktown CDC",
+      "ed_name": "Renee V Drayton",
+      "pay_shifts": 11,
+      "filing_gaps": 1,
+      "closure_candidate": false,
+      "instability_score": 13,
+      "latest_revenue": 184758.0,
+      "last_year_filed": 2023.0
+    },
+    {
+      "org": "Frankford CDC",
+      "ed_name": "Kimberly Washington",
+      "pay_shifts": 7,
+      "filing_gaps": 0,
+      "closure_candidate": false,
+      "instability_score": 7,
+      "latest_revenue": 3208911.0,
+      "last_year_filed": 2023.0
+    },
+    {
+      "org": "HopePHL",
+      "ed_name": "Kathleen Desmond",
+      "pay_shifts": 7,
+      "filing_gaps": 0,
+      "closure_candidate": false,
+      "instability_score": 7,
+      "latest_revenue": 8006243.0,
+      "last_year_filed": 2023.0
+    },
+    {
+      "org": "African Cultural Alliance of North America",
+      "ed_name": "Voffee Jabateh",
+      "pay_shifts": 6,
+      "filing_gaps": 0,
+      "closure_candidate": false,
+      "instability_score": 6,
+      "latest_revenue": 2613278.0,
+      "last_year_filed": 2023.0
+    },
+    {
+      "org": "Impact Services Corporation",
+      "ed_name": "Casey O'donnell",
+      "pay_shifts": 6,
+      "filing_gaps": 0,
+      "closure_candidate": false,
+      "instability_score": 6,
+      "latest_revenue": 13359196.0,
+      "last_year_filed": 2023.0
+    },
+    {
+      "org": "Lancaster Avenue 21st Century Business Association CDC (LA21)",
+      "ed_name": "Kwaku Boateng",
+      "pay_shifts": 4,
+      "filing_gaps": 1,
+      "closure_candidate": false,
+      "instability_score": 6,
+      "latest_revenue": 935900.0,
+      "last_year_filed": 2023.0
+    },
+    {
+      "org": "Partnership CDC",
+      "ed_name": "Steven Williams",
+      "pay_shifts": 3,
+      "filing_gaps": 0,
+      "closure_candidate": true,
+      "instability_score": 6,
+      "latest_revenue": 381694.0,
+      "last_year_filed": 2015.0
+    },
+    {
+      "org": "East Falls Development Corporation",
+      "ed_name": "Michelle Feldman",
+      "pay_shifts": 5,
+      "filing_gaps": 0,
+      "closure_candidate": false,
+      "instability_score": 5,
+      "latest_revenue": 271935.0,
+      "last_year_filed": 2023.0
+    },
+    {
+      "org": "Greater Germantown Housing Development Corporation",
+      "ed_name": null,
+      "pay_shifts": 0,
+      "filing_gaps": 1,
+      "closure_candidate": true,
+      "instability_score": 5,
+      "latest_revenue": -3817500.0,
+      "last_year_filed": 2020.0
+    },
+    {
+      "org": "Korean Community Development Services Center",
+      "ed_name": "Don Yu",
+      "pay_shifts": 5,
+      "filing_gaps": 0,
+      "closure_candidate": false,
+      "instability_score": 5,
+      "latest_revenue": 1710276.0,
+      "last_year_filed": 2023.0
+    },
+    {
+      "org": "Roxborough Development Corporation",
+      "ed_name": "Jax Cusack",
+      "pay_shifts": 3,
+      "filing_gaps": 1,
+      "closure_candidate": false,
+      "instability_score": 5,
+      "latest_revenue": 793385.0,
+      "last_year_filed": 2023.0
+    },
+    {
+      "org": "Weccacoe Development Association",
+      "ed_name": null,
+      "pay_shifts": 0,
+      "filing_gaps": 1,
+      "closure_candidate": true,
+      "instability_score": 5,
+      "latest_revenue": 0.0,
+      "last_year_filed": 2015.0
+    },
+    {
+      "org": "West Oak Lane CDC",
+      "ed_name": "Donald T Stafford",
+      "pay_shifts": 3,
+      "filing_gaps": 1,
+      "closure_candidate": false,
+      "instability_score": 5,
+      "latest_revenue": 257628.0,
+      "last_year_filed": 2023.0
+    },
+    {
+      "org": "Xiente",
+      "ed_name": "Michelle Carrera",
+      "pay_shifts": 5,
+      "filing_gaps": 0,
+      "closure_candidate": false,
+      "instability_score": 5,
+      "latest_revenue": 9936492.0,
+      "last_year_filed": 2023.0
+    },
+    {
+      "org": "ACHIEVEability",
+      "ed_name": "Jamila Harris-morrison",
+      "pay_shifts": 4,
+      "filing_gaps": 0,
+      "closure_candidate": false,
+      "instability_score": 4,
+      "latest_revenue": 842709.0,
+      "last_year_filed": 2022.0
+    }
+  ],
+  "closure_candidates": [
+    {
+      "org": "Partnership CDC",
+      "last_year_filed": 2015.0,
+      "latest_revenue": 381694.0,
+      "filing_gaps": null,
+      "notes": null,
+      "verified_status": "confirmed_closed",
+      "verified_finding": "Not listed in the IRS's current list of tax-exempt organizations as of this check. Last Form 990 on file (fiscal year ending June 2015) was filed May 2016 -- no filings since.",
+      "verified_source": "ProPublica Nonprofit Explorer (EIN 23-2711533)"
+    },
+    {
+      "org": "Greater Germantown Housing Development Corporation",
+      "last_year_filed": 2020.0,
+      "latest_revenue": -3817500.0,
+      "filing_gaps": "2014-2018",
+      "notes": "Active by 1976, succeeding Central Germantown Community Development Corporation; ran housing rehab and homeowner technical-assistance programs into the early 1990s. 455-page records collection at Temple's Special Collections Research Center.",
+      "verified_status": "confirmed_closed",
+      "verified_finding": "Ordered into bankruptcy liquidation in 2010 amid mismanagement findings at its parent organization, Germantown Settlement. The 2020 date in this dataset reflects a final court proceeding over its remaining properties, not ongoing operations -- the organization had already been defunct for a decade.",
+      "verified_source": "WHYY, \"End of an era, Germantown Settlement is no more\""
+    },
+    {
+      "org": "Weccacoe Development Association",
+      "last_year_filed": 2015.0,
+      "latest_revenue": 0.0,
+      "filing_gaps": "2011-2015",
+      "notes": "Founded 1985 to build and rehab low- and moderate-income housing and clear vacant properties in the Weccacoe (Queen Village/Bella Vista) area.",
+      "verified_status": "confirmed_closed",
+      "verified_finding": "Not listed in the IRS's current list of tax-exempt organizations. Last Form 990 on file (fiscal year 2015) reported $0 revenue and $94 in net assets.",
+      "verified_source": "ProPublica Nonprofit Explorer (EIN 22-2646975)"
+    },
+    {
+      "org": "HMC Squared Community Association",
+      "last_year_filed": 2014.0,
+      "latest_revenue": 0.0,
+      "filing_gaps": null,
+      "notes": null,
+      "verified_status": "likely_active_undercounted",
+      "verified_finding": "No full Form 990 on file since 2014 -- but the organization is a registered Philadelphia Registered Community Organization (RCO) as recently as 2024-2025, with an active Facebook presence. Small nonprofits under $50K in annual revenue file the abbreviated 990-N e-postcard, which doesn't always surface the same way in bulk 990 data pulls. Likely still operating at a very small scale, not closed.",
+      "verified_source": "City of Philadelphia RCO list; Facebook (HMC2 Community)"
+    },
+    {
+      "org": "Community of Compassion CDC",
+      "last_year_filed": 2021.0,
+      "latest_revenue": 198846.0,
+      "filing_gaps": null,
+      "notes": null,
+      "verified_status": "confirmed_active",
+      "verified_finding": "Still filing and clearly operating: fiscal year 2025 Form 990 (filed November 2025) reports $2,676,444 in revenue -- well above the $198,846 latest figure in this dataset. Runs an active food pantry and youth programs; has a current website and social media presence.",
+      "verified_source": "ProPublica Nonprofit Explorer (EIN 33-1035662)"
+    },
+    {
+      "org": "Lower North Philadelphia CDC",
+      "last_year_filed": 2020.0,
+      "latest_revenue": 52494.0,
+      "filing_gaps": null,
+      "notes": null,
+      "verified_status": "confirmed_active",
+      "verified_finding": "Still filing and clearly operating: fiscal year 2025 Form 990 (filed May 2026) reports $418,854 in revenue and $377,218 in expenses for ongoing housing rehabilitation programs. This dataset's snapshot simply predates those more recent filings.",
+      "verified_source": "ProPublica Nonprofit Explorer (EIN 82-3231994)"
+    }
+  ],
+  "closure_verification_summary": {
+    "n_flagged": 6,
+    "n_confirmed_closed": 3,
+    "n_confirmed_active": 2,
+    "n_likely_active_undercounted": 1
+  },
+  "tax_credit_timeline": [
+    {
+      "year": 2015,
+      "n_orgs": 42,
+      "total_contribution": 3720000.0
+    },
+    {
+      "year": 2016,
+      "n_orgs": 42,
+      "total_contribution": 3720000.0
+    },
+    {
+      "year": 2017,
+      "n_orgs": 42,
+      "total_contribution": 3735000.0
+    },
+    {
+      "year": 2018,
+      "n_orgs": 41,
+      "total_contribution": 3650000.0
+    },
+    {
+      "year": 2019,
+      "n_orgs": 42,
+      "total_contribution": 3565100.0
+    },
+    {
+      "year": 2020,
+      "n_orgs": 42,
+      "total_contribution": 3680100.0
+    }
+  ],
+  "tax_credit_comparison": {
+    "in_program_recent_pct": 92.9,
+    "in_program_n": 28,
+    "not_in_program_recent_pct": 90.5,
+    "not_in_program_n": 42,
+    "cutoff_year": 2022
+  },
+  "meta": {
+    "source": "Corridor -- Philadelphia CDC dataset (research collaboration with Adam Mirmina; github.com/AdamMirmina/corridor)",
+    "n_organizations": 103,
+    "financial_records": 760,
+    "note": "Financial and current-leadership data drawn from IRS Form 990 filings via the ProPublica Nonprofit Explorer API, fuzzy-matched to a hand-compiled roster of Philadelphia CDCs (see project README for full provenance). Historical year-by-year leadership is not available at scale from this source -- see the companion qualitative research for that."
+  }
+}
+</script>
+
+<script>
+const DATA = JSON.parse(document.getElementById('corridor-data-blob').textContent);
+const fmt$ = (n, compact) => {
+  const sign = n < 0 ? '-' : '';
+  const abs = Math.abs(n);
+  if (compact) {
+    if (abs >= 1e6) return sign + '$' + (abs/1e6).toFixed(abs >= 1e7 ? 1 : 2).replace(/\.0$/,'') + 'M';
+    if (abs >= 1e3) return sign + '$' + (abs/1e3).toFixed(0) + 'K';
+    return sign + '$' + Math.round(abs);
+  }
+  return sign + '$' + Math.round(abs).toLocaleString('en-US');
+};
+const tooltip = document.getElementById('tooltip');
+function showTip(x, y, html) {
+  tooltip.innerHTML = html;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = (y - 10) + 'px';
+  tooltip.style.opacity = 1;
+}
+function hideTip() { tooltip.style.opacity = 0; }
+
+const SERIES = ['var(--series-1)','var(--series-2)','var(--series-3)','var(--series-4)','var(--series-5)','var(--series-6)','var(--series-7)','var(--series-8)'];
+
+/* ---------------- Stat row ---------------- */
+(function statRow(){
+  const latest = DATA.sector_timeline[DATA.sector_timeline.length-1];
+  const top = DATA.instability[0];
+  const nTotal = DATA.pay_summary.n_unpaid + DATA.pay_summary.n_paid;
+  const tiles = [
+    {label:'Total sector revenue, 2023', value: fmt$(latest.total_revenue, true), sub: latest.n_orgs + ' organizations reporting'},
+    {label:'Executive directors reporting $0 pay', value: DATA.pay_summary.n_unpaid + ' of ' + nTotal, sub: Math.round(100*DATA.pay_summary.n_unpaid/nTotal) + '% of EDs with pay data'},
+    {label:'Highest instability score', value: top.instability_score, sub: top.org},
+  ];
+  document.getElementById('stat-row').innerHTML = tiles.map(t => `
+    <div class="stat-tile">
+      <div class="label">${t.label}</div>
+      <div class="value">${t.value}</div>
+      <div class="sub">${t.sub}</div>
+    </div>`).join('');
+})();
+
+/* ---------------- 01 Sector timeline ---------------- */
+(function sector(){
+  const rows = DATA.sector_timeline;
+  const series = [
+    {key:'total_revenue', label:'Revenue', color: SERIES[0]},
+    {key:'total_expenses', label:'Expenses', color: SERIES[1]},
+    {key:'total_assets', label:'Assets', color: SERIES[2]},
+  ];
+  document.getElementById('sector-legend').innerHTML = series.map(s=>`
+    <div class="legend-item"><span class="swatch" style="background:${s.color}"></span>${s.label}</div>`).join('');
+
+  const W = 920, H = 340, M = {top:16,right:70,bottom:30,left:64};
+  const plotW = W-M.left-M.right, plotH = H-M.top-M.bottom;
+  const years = rows.map(r=>r.year);
+  const maxV = Math.max(...rows.map(r=>Math.max(r.total_revenue,r.total_expenses,r.total_assets)));
+  const x = yr => M.left + plotW * (yr - years[0]) / (years[years.length-1]-years[0]);
+  const y = v => M.top + plotH * (1 - v/maxV);
+
+  const yTicks = [0,0.25,0.5,0.75,1].map(f=>Math.round(maxV*f));
+  const gridlines = yTicks.map(v=>`
+    <line class="gridline" x1="${M.left}" x2="${W-M.right}" y1="${y(v)}" y2="${y(v)}" />
+    <text class="axis-text" x="${M.left-8}" y="${y(v)+4}" text-anchor="end">${fmt$(v,true)}</text>`).join('');
+  const xTicks = years.filter((yr,i)=> yr % 2 === 1).map(yr=>`<text class="axis-text" x="${x(yr)}" y="${H-M.bottom+18}" text-anchor="middle">${yr}</text>`).join('');
+
+  let paths='', dots='', endLabels='';
+  series.forEach(s=>{
+    const d = rows.map((r,i)=>(i===0?'M':'L')+x(r.year).toFixed(1)+','+y(r[s.key]).toFixed(1)).join(' ');
+    paths += `<path class="line-path" d="${d}" stroke="${s.color}"></path>`;
+    rows.forEach(r=>{
+      dots += `<circle cx="${x(r.year)}" cy="${y(r[s.key])}" r="7" fill="transparent" data-tip="<b>${s.label}, ${r.year}</b>${fmt$(r[s.key])}"></circle>`;
+    });
+    const last = rows[rows.length-1];
+    dots += `<circle class="end-dot" cx="${x(last.year)}" cy="${y(last[s.key])}" r="4" fill="${s.color}"></circle>`;
+    endLabels += `<text class="end-label" x="${x(last.year)+9}" y="${y(last[s.key])+4}" fill="${s.color}">${s.label}</text>`;
+  });
+
+  document.getElementById('sector-chart').innerHTML = `
+    <svg class="chart" viewBox="0 0 ${W} ${H}">
+      ${gridlines}
+      <line class="axis-line" x1="${M.left}" x2="${W-M.right}" y1="${H-M.bottom}" y2="${H-M.bottom}" />
+      ${xTicks}
+      ${paths}
+      ${dots}
+      ${endLabels}
+    </svg>`;
+  document.querySelectorAll('#sector-chart circle[data-tip]').forEach(el=>{
+    el.addEventListener('mousemove', e=>showTip(e.clientX,e.clientY,el.dataset.tip));
+    el.addEventListener('mouseleave', hideTip);
+  });
+
+  const maxN = Math.max(...rows.map(r=>r.n_orgs));
+  const cH = 90, cM = {left:64,right:70};
+  const barW = (W-cM.left-cM.right)/rows.length;
+  const bars = rows.map((r,i)=>{
+    const h = (cH-20) * r.n_orgs/maxN;
+    const bx = cM.left + i*barW;
+    return `<rect x="${bx+2}" y="${cH-20-h}" width="${barW-4}" height="${h}" rx="2" fill="var(--series-1)" opacity="0.55" data-tip="<b>${r.year}</b>${r.n_orgs} organizations on file"></rect>`;
+  }).join('');
+  document.getElementById('coverage-chart').innerHTML = `
+    <svg class="chart" viewBox="0 0 ${W} ${cH}">
+      <line class="axis-line" x1="${cM.left}" x2="${W-cM.right}" y1="${cH-20}" y2="${cH-20}" />
+      ${bars}
+    </svg>`;
+  document.querySelectorAll('#coverage-chart rect').forEach(el=>{
+    el.addEventListener('mousemove', e=>showTip(e.clientX,e.clientY,el.dataset.tip));
+    el.addEventListener('mouseleave', hideTip);
+  });
+})();
+
+/* ---------------- 02 Pay landscape (log-x scatter) ---------------- */
+(function payChart(){
+  const pts = DATA.pay_landscape.filter(p=>p.compensation>0 && p.latest_revenue>0);
+  const W = 920, H = 420, M = {top:20,right:30,bottom:40,left:70};
+  const plotW = W-M.left-M.right, plotH = H-M.top-M.bottom;
+  const logs = pts.map(p=>Math.log10(p.latest_revenue));
+  const minLog = Math.floor(Math.min(...logs));
+  const maxLog = Math.ceil(Math.max(...logs));
+  const maxPay = Math.max(...pts.map(p=>p.compensation));
+  const x = v => M.left + plotW * (Math.log10(v)-minLog)/(maxLog-minLog);
+  const y = v => M.top + plotH * (1 - v/maxPay);
+
+  const xTickVals = [];
+  for (let e=minLog; e<=maxLog; e++) xTickVals.push(Math.pow(10,e));
+  const xGrid = xTickVals.map(v=>`
+    <line class="gridline" x1="${x(v)}" x2="${x(v)}" y1="${M.top}" y2="${H-M.bottom}" />
+    <text class="axis-text" x="${x(v)}" y="${H-M.bottom+18}" text-anchor="middle">${fmt$(v,true)}</text>`).join('');
+  const yTickVals = [0,0.25,0.5,0.75,1].map(f=>Math.round(maxPay*f));
+  const yGrid = yTickVals.map(v=>`
+    <line class="gridline" x1="${M.left}" x2="${W-M.right}" y1="${y(v)}" y2="${y(v)}" />
+    <text class="axis-text" x="${M.left-8}" y="${y(v)+4}" text-anchor="end">${fmt$(v,true)}</text>`).join('');
+
+  let dots='', labels='';
+  pts.forEach(p=>{
+    const cx=x(p.latest_revenue), cy=y(p.compensation);
+    const tip = '<b>' + p.org + '</b>' + p.ed_name + '<div class="row"><span>Pay</span><span>' + fmt$(p.compensation) + '</span></div><div class="row"><span>Org revenue</span><span>' + fmt$(p.latest_revenue) + '</span></div>';
+    dots += `<circle class="end-dot" cx="${cx}" cy="${cy}" r="5" fill="var(--series-1)" data-tip="${tip.replace(/"/g,'&quot;')}"></circle>`;
+  });
+  const top3 = [...pts].sort((a,b)=>b.compensation-a.compensation).slice(0,3);
+  top3.forEach(p=>{
+    labels += `<text class="end-label" x="${x(p.latest_revenue)+8}" y="${y(p.compensation)+4}" fill="var(--ink-secondary)" style="font-size:11px;font-weight:500">${p.org}</text>`;
+  });
+
+  document.getElementById('pay-chart').innerHTML = `
+    <svg class="chart" viewBox="0 0 ${W} ${H}">
+      ${xGrid}
+      ${yGrid}
+      <line class="axis-line" x1="${M.left}" x2="${W-M.right}" y1="${H-M.bottom}" y2="${H-M.bottom}" />
+      ${dots}
+      ${labels}
+    </svg>`;
+  document.querySelectorAll('#pay-chart circle[data-tip]').forEach(el=>{
+    el.addEventListener('mousemove', e=>showTip(e.clientX,e.clientY,el.dataset.tip));
+    el.addEventListener('mouseleave', hideTip);
+  });
+})();
+
+/* ---------------- 03 Signals leaderboard ---------------- */
+(function signals(){
+  document.getElementById('signals-legend').innerHTML = `
+    <div class="legend-item"><span class="swatch" style="background:var(--series-1)"></span>Instability score</div>
+    <div class="legend-item"><span class="swatch" style="background:var(--series-8)"></span>Flagged closure candidate</div>`;
+
+  const rows = DATA.instability;
+  const max = rows[0].instability_score;
+  document.getElementById('signals-chart').innerHTML = rows.map(r=>{
+    const pct = 100*r.instability_score/max;
+    return `
+      <div class="sig-row">
+        <div class="sig-name">${r.org}${r.closure_candidate ? '<span class="pill lose">Closure flag</span>' : ''}</div>
+        <div class="sig-bar-track"><div class="sig-bar ${r.closure_candidate?'closure':''}" style="width:${pct}%"></div></div>
+        <div class="sig-value tnum">${r.instability_score}</div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('signals-table').innerHTML = `<thead><tr><th>Organization</th><th class="num">Pay-shift years</th><th class="num">Filing gap years</th><th class="num">Instability score</th><th>Closure flag</th></tr></thead>
+    <tbody>${rows.map(r=>`<tr><td>${r.org}</td><td class="num tnum">${r.pay_shifts}</td><td class="num tnum">${r.filing_gaps}</td><td class="num tnum">${r.instability_score}</td><td>${r.closure_candidate?'Yes':'-'}</td></tr>`).join('')}</tbody>`;
+})();
+
+/* ---------------- 04 Closure candidates (verified) ---------------- */
+(function closures(){
+  const card = c => {
+    const revNote = c.latest_revenue < 0 ? ' (negative -- likely a reporting anomaly in the source 990)' : '';
+    const gapNote = c.filing_gaps ? ' &middot; Filing gap: ' + c.filing_gaps : '';
+    return `
+      <div class="district-card">
+        <h4>${c.org}</h4>
+        <div class="d-note">Last Form 990 on file: <b>${c.last_year_filed ? Math.round(c.last_year_filed) : 'unknown'}</b> &middot; Latest revenue: <b>${fmt$(c.latest_revenue)}</b>${revNote}${gapNote}</div>
+        ${c.verified_finding ? `<div class="d-note"><b>Verified:</b> ${c.verified_finding}</div>` : ''}
+        ${c.verified_source ? `<div class="d-note" style="color:var(--ink-muted);font-size:11.5px">Source: ${c.verified_source}</div>` : ''}
+      </div>`;
+  };
+  const closed = DATA.closure_candidates.filter(c => c.verified_status === 'confirmed_closed');
+  const stillActive = DATA.closure_candidates.filter(c => c.verified_status !== 'confirmed_closed');
+  document.getElementById('closure-grid-closed').innerHTML = closed.map(card).join('');
+  document.getElementById('closure-grid-active').innerHTML = stillActive.map(card).join('');
+})();
+
+/* ---------------- 05 Tax credit ---------------- */
+(function taxCredit(){
+  const rows = DATA.tax_credit_timeline;
+  const max = Math.max(...rows.map(r=>r.n_orgs));
+  const W = 920, H = 200, M = {left:64,right:30,bottom:26,top:10};
+  const barW = (W-M.left-M.right)/rows.length;
+  const bars = rows.map((r,i)=>{
+    const h = (H-M.bottom-M.top) * r.n_orgs/max;
+    const bx = M.left + i*barW;
+    return `
+      <rect x="${bx+4}" y="${H-M.bottom-h}" width="${barW-8}" height="${h}" rx="3" fill="var(--series-1)" data-tip="<b>${r.year}</b>${r.n_orgs} organizations &middot; ${fmt$(r.total_contribution,true)} total city contribution"></rect>
+      <text class="axis-text" x="${bx+barW/2}" y="${H-M.bottom+16}" text-anchor="middle">${r.year}</text>
+      <text class="axis-text" x="${bx+barW/2}" y="${H-M.bottom-h-6}" text-anchor="middle" style="fill:var(--ink-secondary)">${r.n_orgs}</text>`;
+  }).join('');
+  document.getElementById('taxcredit-chart').innerHTML = `
+    <svg class="chart" viewBox="0 0 ${W} ${H}">
+      <line class="axis-line" x1="${M.left}" x2="${W-M.right}" y1="${H-M.bottom}" y2="${H-M.bottom}" />
+      ${bars}
+    </svg>`;
+  document.querySelectorAll('#taxcredit-chart rect').forEach(el=>{
+    el.addEventListener('mousemove', e=>showTip(e.clientX,e.clientY,el.dataset.tip));
+    el.addEventListener('mouseleave', hideTip);
+  });
+
+  const c = DATA.tax_credit_comparison;
+  document.getElementById('tc-compare').innerHTML = `
+    <div class="tc-tile">
+      <div class="tc-label">Tax-credit-active orgs (n=${c.in_program_n})</div>
+      <div class="tc-value">${c.in_program_recent_pct}%</div>
+      <div class="tc-sub">filed a 990 in ${c.cutoff_year} or later</div>
+    </div>
+    <div class="tc-tile">
+      <div class="tc-label">Not in the program (n=${c.not_in_program_n})</div>
+      <div class="tc-value">${c.not_in_program_recent_pct}%</div>
+      <div class="tc-sub">filed a 990 in ${c.cutoff_year} or later</div>
+    </div>`;
+})();
+</script>
+</body>
+</html>
