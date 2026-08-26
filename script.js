@@ -76,4 +76,43 @@ document.addEventListener('DOMContentLoaded', () => {
     portfolioBtn.classList.add('active');
   }
 
+  /* =========================
+     CONTACT FORM
+  ========================= */
+  const contactForm = document.querySelector('.contact-form');
+  const formStatus = document.getElementById('form-status');
+
+  if (contactForm && formStatus) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      formStatus.textContent = 'Sending…';
+      formStatus.className = 'form-status';
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { Accept: 'application/json' }
+        });
+
+        if (response.ok) {
+          formStatus.textContent = "Thanks — your message has been sent! I'll get back to you soon.";
+          formStatus.classList.add('success');
+          contactForm.reset();
+        } else {
+          formStatus.textContent = 'Something went wrong sending your message. Please try emailing me directly.';
+          formStatus.classList.add('error');
+        }
+      } catch (err) {
+        formStatus.textContent = 'Something went wrong sending your message. Please try emailing me directly.';
+        formStatus.classList.add('error');
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  }
+
 });
