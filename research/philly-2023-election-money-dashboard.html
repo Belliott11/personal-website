@@ -1,0 +1,2905 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Who Bought the Mayor's Race</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    color-scheme: light;
+    --paper:        #eef1ef;
+    --surface:      #fcfcfb;
+    --surface-2:    #ffffff;
+    --ink:          #14110d;
+    --ink-secondary:#52514e;
+    --ink-muted:    #898781;
+    --hairline:     #e1e0d9;
+    --border:       rgba(11,11,11,0.10);
+    --navy:         #1c3a5e;
+    --navy-strong:  #0f2740;
+    --navy-wash:    rgba(28,58,94,0.07);
+    --gold:         #8a6a1f;
+    --gold-strong:  #6e5417;
+    --gold-wash:    rgba(169,130,47,0.14);
+    --good-text:    #006300;
+    --bad-text:     #8a2f22;
+
+    --series-1: #2a78d6; /* blue */
+    --series-2: #eb6834; /* orange */
+    --series-3: #1baf7a; /* aqua */
+    --series-4: #eda100; /* yellow */
+    --series-5: #e87ba4; /* magenta */
+    --series-6: #008300; /* green */
+    --series-7: #4a3aa7; /* violet */
+    --series-8: #e34948; /* red */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --paper:        #100f0c;
+      --surface:      #1a1a19;
+      --surface-2:    #201f1c;
+      --ink:          #ffffff;
+      --ink-secondary:#c3c2b7;
+      --ink-muted:    #898781;
+      --hairline:     #2c2c2a;
+      --border:       rgba(255,255,255,0.10);
+      --navy:         #7fa8d6;
+      --navy-strong:  #a9c4e6;
+      --navy-wash:    rgba(127,168,214,0.12);
+      --gold:         #d9bd7a;
+      --gold-strong:  #e9d59a;
+      --gold-wash:    rgba(217,189,122,0.14);
+      --good-text:    #0ca30c;
+      --bad-text:     #e08668;
+
+      --series-1: #3987e5;
+      --series-2: #d95926;
+      --series-3: #199e70;
+      --series-4: #c98500;
+      --series-5: #d55181;
+      --series-6: #008300;
+      --series-7: #9085e9;
+      --series-8: #e66767;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper:        #100f0c;
+    --surface:      #1a1a19;
+    --surface-2:    #201f1c;
+    --ink:          #ffffff;
+    --ink-secondary:#c3c2b7;
+    --ink-muted:    #898781;
+    --hairline:     #2c2c2a;
+    --border:       rgba(255,255,255,0.10);
+    --navy:         #7fa8d6;
+    --navy-strong:  #a9c4e6;
+    --navy-wash:    rgba(127,168,214,0.12);
+    --gold:         #d9bd7a;
+    --gold-strong:  #e9d59a;
+    --gold-wash:    rgba(217,189,122,0.14);
+    --good-text:    #0ca30c;
+    --bad-text:     #e08668;
+
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+    --series-5: #d55181;
+    --series-6: #008300;
+    --series-7: #9085e9;
+    --series-8: #e66767;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--gold-wash); }
+  a { color: var(--navy); }
+  h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; text-wrap: balance; margin: 0; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  .page {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+  }
+
+  /* ---------- Header ---------- */
+  header.hero {
+    padding: 64px 0 40px;
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 48px;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--navy-wash);
+    padding: 5px 10px 4px;
+    border-radius: 3px;
+    margin-bottom: 22px;
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex: none; }
+  h1.title {
+    font-size: clamp(34px, 5.4vw, 54px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    max-width: 16ch;
+  }
+  p.dek {
+    font-size: 18px;
+    color: var(--ink-secondary);
+    max-width: 62ch;
+    margin: 20px 0 0;
+  }
+  p.dek b { color: var(--ink); font-weight: 600; }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 36px;
+  }
+  .stat-tile {
+    background: var(--surface);
+    padding: 20px 22px;
+  }
+  .stat-tile .label {
+    font-size: 12px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .stat-tile .value {
+    font-family: "Source Serif 4", serif;
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 6px;
+    font-variant-numeric: proportional-nums;
+  }
+  .stat-tile .sub { font-size: 13px; color: var(--ink-secondary); margin-top: 4px; }
+
+  /* ---------- Sections ---------- */
+  section.block { margin: 76px 0; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .section-num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  h2.section-title {
+    font-size: 25px;
+    font-weight: 600;
+  }
+  p.section-note {
+    color: var(--ink-secondary);
+    max-width: 66ch;
+    margin: 10px 0 28px;
+    font-size: 15px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 26px 28px;
+  }
+
+  /* ---------- Legend ---------- */
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 18px; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-secondary); }
+  .swatch { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+
+  /* ---------- Money race rows ---------- */
+  .race-row { margin-bottom: 18px; }
+  .race-row:last-child { margin-bottom: 0; }
+  .race-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 5px;
+    font-size: 14.5px;
+  }
+  .race-name { font-weight: 600; }
+  .race-name .party { font-weight: 400; color: var(--ink-muted); font-size: 12.5px; margin-left: 6px; }
+  .race-total { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; color: var(--ink-secondary); font-size: 13.5px; }
+  .pill {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 2px 7px 1px;
+    border-radius: 20px;
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+  .pill.win { background: rgba(12,163,12,0.12); color: var(--good-text); }
+  .pill.lose { background: var(--border); color: var(--ink-muted); }
+
+  .bar-track {
+    height: 22px;
+    background: transparent;
+    border-radius: 4px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-seg { height: 100%; }
+  .bar-seg:not(:last-child) { margin-right: 2px; }
+  .bar-seg:first-child { border-top-left-radius: 4px; border-bottom-left-radius: 4px; }
+  .bar-seg:last-child { border-top-right-radius: 4px; border-bottom-right-radius: 4px; }
+
+  /* ---------- Charts (svg) ---------- */
+  svg.chart { width: 100%; height: auto; display: block; overflow: visible; }
+  .axis-line { stroke: var(--hairline); stroke-width: 1; }
+  .axis-text { fill: var(--ink-muted); font-size: 11px; font-family: "IBM Plex Mono", monospace; }
+  .gridline { stroke: var(--hairline); stroke-width: 1; }
+  .ref-line { stroke: var(--ink-muted); stroke-width: 1; stroke-dasharray: 2 3; }
+  .ref-label { fill: var(--ink-muted); font-size: 10.5px; font-family: "IBM Plex Mono", monospace; }
+  .line-path { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .end-dot { stroke: var(--surface); stroke-width: 2; }
+  .end-label { font-size: 12px; font-family: "IBM Plex Sans", sans-serif; font-weight: 600; }
+
+  .tooltip {
+    position: fixed;
+    pointer-events: none;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 12.5px;
+    padding: 8px 11px;
+    border-radius: 5px;
+    line-height: 1.45;
+    max-width: 240px;
+    opacity: 0;
+    transform: translate(-50%, -100%);
+    transition: opacity .1s;
+    z-index: 50;
+  }
+  .tooltip b { display: block; margin-bottom: 2px; }
+  .tooltip .row { display: flex; justify-content: space-between; gap: 12px; }
+
+  details.table-toggle { margin-top: 18px; }
+  details.table-toggle summary {
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--navy);
+    font-weight: 500;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  details.table-toggle summary::-webkit-details-marker { display: none; }
+  details.table-toggle summary::before { content: "▸"; font-size: 10px; }
+  details.table-toggle[open] summary::before { content: "▾"; }
+
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    font-size: 13.5px;
+  }
+  table.data-table th, table.data-table td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  table.data-table th { color: var(--ink-muted); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+  table.data-table td.num, table.data-table th.num { text-align: right; font-family: "IBM Plex Mono", monospace; }
+
+  /* ---------- Geography stacked ---------- */
+  .geo-row { display: grid; grid-template-columns: 148px 1fr 46px; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .geo-name { font-size: 13.5px; font-weight: 600; }
+  .geo-total { font-size: 12px; color: var(--ink-muted); font-family: "IBM Plex Mono", monospace; text-align: right; }
+  .geo-bar { display: flex; height: 16px; border-radius: 3px; overflow: hidden; }
+  .geo-seg:not(:last-child) { margin-right: 2px; }
+
+  /* ---------- Donor explorer ---------- */
+  .explorer {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 28px;
+  }
+  @media (max-width: 760px) { .explorer { grid-template-columns: 1fr; } }
+  select.cand-select {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 9px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--hairline);
+    background: var(--surface-2);
+    color: var(--ink);
+    width: 100%;
+    margin-bottom: 4px;
+  }
+  .explorer-meta { font-size: 13px; color: var(--ink-secondary); margin: 10px 0 16px; }
+  .panel-title { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-muted); margin-bottom: 12px; }
+
+  /* ---------- Citywide bars ---------- */
+  .office-row { display: grid; grid-template-columns: 168px 1fr 90px; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 13.5px; }
+  .office-name { font-weight: 500; }
+  .office-bar-track { height: 14px; background: transparent; }
+  .office-bar { height: 100%; border-radius: 3px; background: var(--series-1); }
+  .office-value { text-align: right; font-family: "IBM Plex Mono", monospace; color: var(--ink-secondary); }
+
+  /* ---------- Council: at-large ---------- */
+  .cutoff-wrap { position: relative; }
+  .cutoff-line {
+    position: absolute;
+    border-left: 1px dashed var(--ink-muted);
+    top: -6px; bottom: 24px;
+    pointer-events: none;
+  }
+  .cutoff-label {
+    position: absolute;
+    top: -22px;
+    font-size: 10.5px;
+    font-family: "IBM Plex Mono", monospace;
+    color: var(--ink-muted);
+    transform: translateX(-100%);
+    white-space: nowrap;
+    padding-right: 6px;
+  }
+  .al-row { display: grid; grid-template-columns: 200px 1fr 74px; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .al-name { font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .al-name .party-tag { font-weight: 400; color: var(--ink-muted); font-size: 11.5px; }
+  .al-bar-track { height: 14px; border-radius: 3px; overflow: hidden; background: transparent; }
+  .al-bar { height: 100%; border-radius: 3px; }
+  .al-bar.lost { opacity: 0.38; }
+  .al-value { text-align: right; font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--ink-secondary); }
+
+  /* ---------- Council: districts ---------- */
+  .district-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media (max-width: 760px) { .district-grid { grid-template-columns: 1fr; } }
+  .district-card {
+    border: 1px solid var(--hairline);
+    border-radius: 7px;
+    padding: 16px 18px;
+  }
+  .district-card h4 { font-size: 14px; margin: 0 0 6px; font-weight: 600; }
+  .district-card .d-note { font-size: 12.5px; color: var(--ink-secondary); margin-bottom: 12px; line-height: 1.5; }
+  .d-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; margin-bottom: 7px; font-size: 12.5px; }
+  .d-row .d-name { font-weight: 500; }
+  .d-row .d-name.lost { color: var(--ink-muted); font-weight: 400; }
+  .d-row .d-val { font-family: "IBM Plex Mono", monospace; color: var(--ink-secondary); }
+  .d-bar-track { grid-column: 1 / -1; height: 10px; border-radius: 2px; overflow: hidden; }
+  .d-bar { height: 100%; border-radius: 2px; }
+  .d-bar.lost { opacity: 0.38; }
+  .district-uncontested { font-size: 13px; color: var(--ink-secondary); }
+  .district-uncontested ul { margin: 8px 0 0; padding-left: 18px; }
+  .district-uncontested li { margin-bottom: 5px; }
+
+  footer.methodology {
+    border-top: 1px solid var(--hairline);
+    padding-top: 36px;
+    margin-top: 80px;
+    font-size: 13.5px;
+    color: var(--ink-secondary);
+  }
+  footer.methodology h3 { font-size: 15px; margin-bottom: 14px; color: var(--ink); }
+  footer.methodology ol { padding-left: 20px; margin: 0 0 20px; }
+  footer.methodology li { margin-bottom: 8px; }
+  footer.methodology .credit { margin-top: 24px; color: var(--ink-muted); font-size: 12.5px; }
+  footer.methodology .credit a { color: var(--ink-muted); text-decoration-color: var(--border); }
+
+  @media (max-width: 620px) {
+    .stat-row { grid-template-columns: 1fr; }
+    header.hero { padding-top: 44px; }
+    .geo-row { grid-template-columns: 1fr; }
+    .geo-total { text-align: left; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="eyebrow"><span class="dot"></span>Philadelphia campaign finance &middot; 2023 municipal elections</div>
+    <h1 class="title">Who Bought the Mayor&rsquo;s Race?</h1>
+    <p class="dek">Two candidates spent a combined <b>$30M+</b> of mostly their own money and both lost the primary. The candidate who became mayor raised less than a third of what the top self-funder spent &mdash; and got there on 3,520 separate contributions instead of one signature. The same pattern shows up further down the ballot, in City Council. Built from the city&rsquo;s own campaign finance filings.</p>
+    <div class="stat-row" id="stat-row"></div>
+  </header>
+
+  <section class="block" id="sec-race">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">The Money Race</h2>
+    </div>
+    <p class="section-note">All 11 mayoral candidates, ranked by total raised in 2023. Each bar is split by where the money came from &mdash; and the split tells its own story: the two biggest bars are mostly one color.</p>
+    <div class="card">
+      <div class="legend" id="race-legend"></div>
+      <div id="race-chart"></div>
+      <details class="table-toggle">
+        <summary>View as table</summary>
+        <div style="overflow-x:auto"><table class="data-table" id="race-table"></table></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="block" id="sec-timeline">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Fundraising Over the Year</h2>
+    </div>
+    <p class="section-note">Cumulative dollars raised, week by week, for the six best-funded candidates. Watch the two self-funders make sudden vertical jumps &mdash; a single check, not a groundswell &mdash; while Parker&rsquo;s line climbs in small, steady steps.</p>
+    <div class="card">
+      <div class="legend" id="timeline-legend"></div>
+      <div id="timeline-chart"></div>
+      <details class="table-toggle">
+        <summary>View as table</summary>
+        <div style="overflow-x:auto"><table class="data-table" id="timeline-table"></table></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="block" id="sec-geo">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Where the Money Came From</h2>
+    </div>
+    <p class="section-note">Each candidate&rsquo;s money, split by the donor&rsquo;s reported city and state. Shown as a share of that candidate&rsquo;s total so a $12M war chest and a $250K one are easy to compare directly.</p>
+    <div class="card">
+      <div class="legend" id="geo-legend"></div>
+      <div id="geo-chart"></div>
+    </div>
+  </section>
+
+  <section class="block" id="sec-explorer">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Top Donors &amp; Where the Money Went</h2>
+    </div>
+    <p class="section-note">Pick a candidate to see their largest disclosed contributors (self-funding excluded). On the right, the vendors who cashed the biggest checks across the whole race &mdash; mostly media-buying and consulting firms.</p>
+    <div class="card">
+      <div class="explorer">
+        <div>
+          <div class="panel-title">Top donors</div>
+          <select class="cand-select" id="cand-select"></select>
+          <div class="explorer-meta" id="cand-meta"></div>
+          <table class="data-table" id="donor-table"><thead><tr><th>Donor</th><th class="num">Amount</th></tr></thead><tbody></tbody></table>
+        </div>
+        <div>
+          <div class="panel-title">Top vendors, citywide (mayoral race)</div>
+          <table class="data-table" id="payee-table"><thead><tr><th>Vendor</th><th class="num">Paid</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="sec-citywide">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Beyond the Mayor&rsquo;s Race</h2>
+    </div>
+    <p class="section-note">The mayoral race wasn&rsquo;t the only thing on the 2023 ballot &mdash; it was, by a wide margin, the most expensive. Total raised by office, citywide.</p>
+    <div class="card" id="office-chart"></div>
+  </section>
+
+  <section class="block" id="sec-al">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2 class="section-title">City Council At-Large: The Upset</h2>
+    </div>
+    <p class="section-note">Seven seats, elected citywide: five go to the top vote-getters overall, two are reserved for a minority party. For 70 years those two seats went to Republicans. In 2023 they went to the Working Families Party instead &mdash; and neither WFP winner outraised the Republican who lost the second seat by fewer than 5,000 votes.</p>
+    <div class="card">
+      <div class="legend" id="al-legend"></div>
+      <div class="cutoff-wrap" id="al-chart"></div>
+      <details class="table-toggle">
+        <summary>View as table</summary>
+        <div style="overflow-x:auto"><table class="data-table" id="al-table"></table></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="block" id="sec-districts">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <h2 class="section-title">District Council: Money Isn&rsquo;t the Whole Race</h2>
+    </div>
+    <p class="section-note">Ten geographic seats, one winner each. Most 2023 incumbents faced no serious money race at all &mdash; but the one genuinely contested general election is the cleanest example on this whole page of fundraising <i>not</i> predicting the outcome.</p>
+    <div class="card">
+      <div class="district-grid" id="district-grid"></div>
+    </div>
+  </section>
+
+  <footer class="methodology">
+    <h3>Data &amp; methods</h3>
+    <ol>
+      <li><b>Source.</b> Philadelphia Board of Ethics campaign finance filings, published as open data via <a href="https://opendataphilly.org/datasets/campaign-finance-reports/" target="_blank" rel="noopener">OpenDataPhilly</a> (tables <span class="mono">campfin_contributions</span> / <span class="mono">campfin_expenditures</span>). Scope here is every transaction reported in calendar year 2023 across the Mayor, City Council At-Large, and City Council district races &mdash; roughly 32,000 contribution records and 6,000 expenditure records combined.</li>
+      <li><b>Donor classification (Mayor section).</b> The source data doesn&rsquo;t label most donors by type (87% of mayoral contribution rows are &ldquo;Not Specified&rdquo;), so donor category there is inferred: a contribution is <i>self-funded</i> when the donor name matches the candidate&rsquo;s own name, a <i>PAC / union / committee</i> when the name matches keywords like PAC, union, committee, or fund, a <i>business entity</i> for LLC/Inc/Corp-style names, and <i>individual</i> otherwise. This is a heuristic, not a certified classification &mdash; a handful of edge cases (e.g. sole proprietorships named after their owner) will be misbucketed.</li>
+      <li><b>Geography</b> is the donor&rsquo;s self-reported city/state on the filing, not employer location, and is missing for some smaller contributions.</li>
+      <li><b>Totals raised vs. spent</b> can diverge from a candidate&rsquo;s full campaign because this dataset is scoped to 2023 filings only; a candidate who also raised money in 2022 (several did) can show 2023 spending in excess of 2023 raising.</li>
+      <li><b>District council coverage is uneven.</b> Districts 1, 2, 4, 5, and 6 had incumbents who ran effectively unopposed in 2023 and show little or no itemized fundraising in this dataset &mdash; they&rsquo;re summarized rather than charted. District 7&rsquo;s incumbent (Quetcy Lozada) also has no itemized 2023 contributions on file here despite winning re-election.</li>
+      <li><b>Election outcomes</b> are not in the source dataset and were added from certified public results (Philadelphia City Commissioners, 2023 primary and general).</li>
+      <li>A few donor and candidate names were corrected for character-encoding issues in the source export (e.g. Maria Quiñones-Sánchez, Erika Almirón).</li>
+    </ol>
+    <div class="credit">Built by Benjamin Elliott &middot; analysis in Python (pandas), chart code hand-rolled in vanilla JS/SVG &middot; data current as filed through Dec 2023.</div>
+  </footer>
+
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script id="data-blob" type="application/json">
+{
+  "candidates": [
+    {
+      "name": "Jeff Brown",
+      "party": "Democratic",
+      "outcome": "Lost Democratic primary",
+      "total_raised": 12632324,
+      "total_spent": 12179702.66,
+      "num_contributions": 1782,
+      "avg_contribution": 7088.85,
+      "self_funded": 8650000,
+      "pct_self_funded": 68.5,
+      "from_philly": 10087088,
+      "from_pa_other": 1559152,
+      "from_out_of_state": 981558,
+      "small_dollar_le250": 88040,
+      "donor_class_breakdown": {
+        "Business entity": 987634,
+        "Individual": 2799820,
+        "PAC / union / committee": 194870,
+        "Self-funded": 8650000
+      },
+      "top_donors": [
+        {
+          "name": "Teamsters Union Local 115 Pac",
+          "amount": 50400
+        },
+        {
+          "name": "1776 P.A.C.",
+          "amount": 50400
+        },
+        {
+          "name": "Miller Shaw Llp",
+          "amount": 50400
+        },
+        {
+          "name": "Liberty Re Property Holdings Llc",
+          "amount": 50400
+        },
+        {
+          "name": "Lmb1 Properties Lp",
+          "amount": 50400
+        },
+        {
+          "name": "Louis Eni Christopher Eni And Cindy Yingling Llc",
+          "amount": 50400
+        },
+        {
+          "name": "Post Brothers Management Llc",
+          "amount": 50400
+        },
+        {
+          "name": "Save Philly Stores Lp",
+          "amount": 50400
+        }
+      ]
+    },
+    {
+      "name": "Allan Domb",
+      "party": "Democratic",
+      "outcome": "Lost Democratic primary",
+      "total_raised": 9069617,
+      "total_spent": 18172794.75,
+      "num_contributions": 772,
+      "avg_contribution": 11748.21,
+      "self_funded": 8004775,
+      "pct_self_funded": 88.3,
+      "from_philly": 8458267,
+      "from_pa_other": 271687,
+      "from_out_of_state": 335897,
+      "small_dollar_le250": 40650,
+      "donor_class_breakdown": {
+        "Business entity": 68287,
+        "Individual": 922755,
+        "PAC / union / committee": 73800,
+        "Self-funded": 8004775
+      },
+      "top_donors": [
+        {
+          "name": "Al Media",
+          "amount": 245222
+        },
+        {
+          "name": "Southeast Realtors Pac",
+          "amount": 25200
+        },
+        {
+          "name": "Local Strategies Llc",
+          "amount": 20000
+        },
+        {
+          "name": "Vernon Hill",
+          "amount": 14900
+        },
+        {
+          "name": "Greater Philadelphia Association Of Realtors Philpac",
+          "amount": 12600
+        },
+        {
+          "name": "Michael Pansini",
+          "amount": 12400
+        },
+        {
+          "name": "Elisa Pansini",
+          "amount": 12400
+        },
+        {
+          "name": "David Kelleher",
+          "amount": 10478
+        }
+      ]
+    },
+    {
+      "name": "Cherelle Parker",
+      "party": "Democratic",
+      "outcome": "Won Democratic primary & general (Mayor)",
+      "total_raised": 4643645,
+      "total_spent": 4079986.57,
+      "num_contributions": 3520,
+      "avg_contribution": 1319.22,
+      "self_funded": 0,
+      "pct_self_funded": 0.0,
+      "from_philly": 2553616,
+      "from_pa_other": 1384501,
+      "from_out_of_state": 685557,
+      "small_dollar_le250": 242284,
+      "donor_class_breakdown": {
+        "Business entity": 303963,
+        "Individual": 3544545,
+        "PAC / union / committee": 795137
+      },
+      "top_donors": [
+        {
+          "name": "People For Parker",
+          "amount": 180819
+        },
+        {
+          "name": "Pennsylvania Democrats",
+          "amount": 79560
+        },
+        {
+          "name": "Goldstein Oller Hollinger Family Partnership Llc",
+          "amount": 63800
+        },
+        {
+          "name": "Sheet Metal Workers Union Local 19 Pac",
+          "amount": 40300
+        },
+        {
+          "name": "Laborers District Council Pac Fund",
+          "amount": 37800
+        },
+        {
+          "name": "Greater Pa Carpenters Pec",
+          "amount": 37600
+        },
+        {
+          "name": "Swanson Street Associates",
+          "amount": 37600
+        },
+        {
+          "name": "Plumbers Union Local #690",
+          "amount": 37600
+        }
+      ]
+    },
+    {
+      "name": "Rebecca Rhynhart",
+      "party": "Democratic",
+      "outcome": "Lost Democratic primary",
+      "total_raised": 2200681,
+      "total_spent": 2831563.15,
+      "num_contributions": 2763,
+      "avg_contribution": 796.48,
+      "self_funded": 41318,
+      "pct_self_funded": 1.9,
+      "from_philly": 1332849,
+      "from_pa_other": 560623,
+      "from_out_of_state": 276154,
+      "small_dollar_le250": 209953,
+      "donor_class_breakdown": {
+        "Business entity": 127013,
+        "Individual": 1859158,
+        "PAC / union / committee": 173192,
+        "Self-funded": 41318
+      },
+      "top_donors": [
+        {
+          "name": "Unitemized Monetary Contributions",
+          "amount": 31055
+        },
+        {
+          "name": "Greater Pa Carpenters Pac",
+          "amount": 25200
+        },
+        {
+          "name": "Chamber Phl Pac",
+          "amount": 25200
+        },
+        {
+          "name": "Sheet Metal Workers Union Local 19",
+          "amount": 25200
+        },
+        {
+          "name": "Gobrands Inc. Political Action Committee",
+          "amount": 20000
+        },
+        {
+          "name": "Pfbm Llc",
+          "amount": 20000
+        },
+        {
+          "name": "1417 Spruce Associates Lp",
+          "amount": 20000
+        },
+        {
+          "name": "Comcast Corporation & Nbcuniversal Pac",
+          "amount": 15000
+        }
+      ]
+    },
+    {
+      "name": "Helen Gym",
+      "party": "Democratic",
+      "outcome": "Lost Democratic primary",
+      "total_raised": 1487335,
+      "total_spent": 2391275.93,
+      "num_contributions": 3239,
+      "avg_contribution": 459.2,
+      "self_funded": 746,
+      "pct_self_funded": 0.1,
+      "from_philly": 633285,
+      "from_pa_other": 218799,
+      "from_out_of_state": 525330,
+      "small_dollar_le250": 227085,
+      "donor_class_breakdown": {
+        "Business entity": 77200,
+        "Individual": 1197063,
+        "PAC / union / committee": 212326,
+        "Self-funded": 746
+      },
+      "top_donors": [
+        {
+          "name": "Unitemized Monetary Contributions",
+          "amount": 109921
+        },
+        {
+          "name": "Greater Pa Carpenters Pac",
+          "amount": 25200
+        },
+        {
+          "name": "Pft Committee To Support Public Education",
+          "amount": 25200
+        },
+        {
+          "name": "American Federation Of Teachers Cope - Voluntary A/C",
+          "amount": 25200
+        },
+        {
+          "name": "Unite Here Tip Campaign Committee",
+          "amount": 25200
+        },
+        {
+          "name": "Jane Fonda Climate Pac",
+          "amount": 25200
+        },
+        {
+          "name": "Way To Lead Pa Pac",
+          "amount": 25200
+        },
+        {
+          "name": "Tfy Llc",
+          "amount": 25000
+        }
+      ]
+    },
+    {
+      "name": "David Oh",
+      "party": "Republican",
+      "outcome": "Won Republican primary, lost general",
+      "total_raised": 574525,
+      "total_spent": 614745.19,
+      "num_contributions": 531,
+      "avg_contribution": 1081.97,
+      "self_funded": 1960,
+      "pct_self_funded": 0.3,
+      "from_philly": 199215,
+      "from_pa_other": 254957,
+      "from_out_of_state": 107980,
+      "small_dollar_le250": 23943,
+      "donor_class_breakdown": {
+        "Business entity": 1150,
+        "Individual": 564065,
+        "PAC / union / committee": 7350,
+        "Self-funded": 1960
+      },
+      "top_donors": [
+        {
+          "name": "Timothy Haahs",
+          "amount": 12400
+        },
+        {
+          "name": "Elaine Wong",
+          "amount": 12400
+        },
+        {
+          "name": "Steve Tang",
+          "amount": 12400
+        },
+        {
+          "name": "Allan Xu",
+          "amount": 12400
+        },
+        {
+          "name": "Yue Ying Liao",
+          "amount": 12400
+        },
+        {
+          "name": "Lisa\tTaing",
+          "amount": 12400
+        },
+        {
+          "name": "Lisha Sun",
+          "amount": 12400
+        },
+        {
+          "name": "Kyong Ko",
+          "amount": 12400
+        }
+      ]
+    },
+    {
+      "name": "Maria Quinones-Sanchez",
+      "party": "Democratic",
+      "outcome": "Lost Democratic primary",
+      "total_raised": 364360,
+      "total_spent": 760934.71,
+      "num_contributions": 496,
+      "avg_contribution": 734.6,
+      "self_funded": 0,
+      "pct_self_funded": 0.0,
+      "from_philly": 159128,
+      "from_pa_other": 155606,
+      "from_out_of_state": 47685,
+      "small_dollar_le250": 35044,
+      "donor_class_breakdown": {
+        "Business entity": 16600,
+        "Individual": 282760,
+        "PAC / union / committee": 65000
+      },
+      "top_donors": [
+        {
+          "name": "Stronghold Development & Construction",
+          "amount": 22000
+        },
+        {
+          "name": "Thomas Gravina",
+          "amount": 6200
+        },
+        {
+          "name": "Sonny Ho",
+          "amount": 6200
+        },
+        {
+          "name": "Paul Mulligan",
+          "amount": 6200
+        },
+        {
+          "name": "Peter Winebrake",
+          "amount": 6200
+        },
+        {
+          "name": "Aqeel Ahmed",
+          "amount": 6200
+        },
+        {
+          "name": "Pelayo Coll",
+          "amount": 6200
+        },
+        {
+          "name": "Josh Kopelman",
+          "amount": 6200
+        }
+      ]
+    },
+    {
+      "name": "Derek S Green",
+      "party": "Democratic",
+      "outcome": "Lost Democratic primary",
+      "total_raised": 251159,
+      "total_spent": 636558.35,
+      "num_contributions": 546,
+      "avg_contribution": 460.0,
+      "self_funded": 11341,
+      "pct_self_funded": 4.5,
+      "from_philly": 95138,
+      "from_pa_other": 64152,
+      "from_out_of_state": 87381,
+      "small_dollar_le250": 56219,
+      "donor_class_breakdown": {
+        "Business entity": 9996,
+        "Individual": 228122,
+        "PAC / union / committee": 1700,
+        "Self-funded": 11341
+      },
+      "top_donors": [
+        {
+          "name": "Snyder Pickerill Media",
+          "amount": 33202
+        },
+        {
+          "name": "Alan Lindy",
+          "amount": 6200
+        },
+        {
+          "name": "Aimco Properties Lp",
+          "amount": 6200
+        },
+        {
+          "name": "Mustafa Rashed",
+          "amount": 6200
+        },
+        {
+          "name": "Ken Baker",
+          "amount": 6000
+        },
+        {
+          "name": "B Robin Eglin",
+          "amount": 5000
+        },
+        {
+          "name": "Anita Green",
+          "amount": 4622
+        },
+        {
+          "name": "Unitemized Monetary Contributions",
+          "amount": 4488
+        }
+      ]
+    },
+    {
+      "name": "James M Deleon",
+      "party": "Democratic",
+      "outcome": "Lost Democratic primary",
+      "total_raised": 130324,
+      "total_spent": 110575.0,
+      "num_contributions": 170,
+      "avg_contribution": 766.61,
+      "self_funded": 0,
+      "pct_self_funded": 0.0,
+      "from_philly": 16250,
+      "from_pa_other": 96374,
+      "from_out_of_state": 17700,
+      "small_dollar_le250": 13075,
+      "donor_class_breakdown": {
+        "Individual": 130324
+      },
+      "top_donors": [
+        {
+          "name": "Beginning Cash Balance In Bank",
+          "amount": 18999
+        },
+        {
+          "name": "James Deleon",
+          "amount": 13500
+        },
+        {
+          "name": "Ricky Yi",
+          "amount": 6900
+        },
+        {
+          "name": "Allen Rothenberg",
+          "amount": 5500
+        },
+        {
+          "name": "Kim Graves",
+          "amount": 3350
+        },
+        {
+          "name": "Sidney Booker",
+          "amount": 3200
+        },
+        {
+          "name": "John Cho",
+          "amount": 3100
+        },
+        {
+          "name": "Marion Murphy Vanderveen",
+          "amount": 3100
+        }
+      ]
+    },
+    {
+      "name": "Amen Brown",
+      "party": "Democratic",
+      "outcome": "Lost Democratic primary",
+      "total_raised": 68870,
+      "total_spent": 59123.47,
+      "num_contributions": 39,
+      "avg_contribution": 1765.9,
+      "self_funded": 0,
+      "pct_self_funded": 0.0,
+      "from_philly": 24770,
+      "from_pa_other": 7450,
+      "from_out_of_state": 36650,
+      "small_dollar_le250": 1470,
+      "donor_class_breakdown": {
+        "Individual": 45370,
+        "PAC / union / committee": 23500
+      },
+      "top_donors": [
+        {
+          "name": "Cnd Pac",
+          "amount": 22000
+        },
+        {
+          "name": "Marty Burger",
+          "amount": 6200
+        },
+        {
+          "name": "Sharif El-Gamal",
+          "amount": 6200
+        },
+        {
+          "name": "Michael Brown",
+          "amount": 6200
+        },
+        {
+          "name": "Peter Stern",
+          "amount": 3600
+        },
+        {
+          "name": "Lakisha Harvey",
+          "amount": 3100
+        },
+        {
+          "name": "Mark O'Connor",
+          "amount": 3100
+        },
+        {
+          "name": "Philip Roth",
+          "amount": 2000
+        }
+      ]
+    },
+    {
+      "name": "Delscia M Gray",
+      "party": "Democratic",
+      "outcome": "Lost Democratic primary",
+      "total_raised": 21,
+      "total_spent": 0.0,
+      "num_contributions": 1,
+      "avg_contribution": 21.0,
+      "self_funded": 0,
+      "pct_self_funded": 0.0,
+      "from_philly": 0,
+      "from_pa_other": 0,
+      "from_out_of_state": 0,
+      "small_dollar_le250": 21,
+      "donor_class_breakdown": {
+        "Individual": 21
+      },
+      "top_donors": [
+        {
+          "name": "Unitemized In-Kind Contributions",
+          "amount": 21
+        }
+      ]
+    }
+  ],
+  "timeline": {
+    "Jeff Brown": [
+      {
+        "date": "2022-12-26",
+        "cumulative": 100
+      },
+      {
+        "date": "2023-01-02",
+        "cumulative": 31210
+      },
+      {
+        "date": "2023-01-09",
+        "cumulative": 71870
+      },
+      {
+        "date": "2023-01-16",
+        "cumulative": 167170
+      },
+      {
+        "date": "2023-01-23",
+        "cumulative": 982654
+      },
+      {
+        "date": "2023-01-30",
+        "cumulative": 1124524
+      },
+      {
+        "date": "2023-02-06",
+        "cumulative": 1238424
+      },
+      {
+        "date": "2023-02-13",
+        "cumulative": 1423534
+      },
+      {
+        "date": "2023-02-20",
+        "cumulative": 2626484
+      },
+      {
+        "date": "2023-02-27",
+        "cumulative": 3006514
+      },
+      {
+        "date": "2023-03-06",
+        "cumulative": 3221514
+      },
+      {
+        "date": "2023-03-13",
+        "cumulative": 3601042
+      },
+      {
+        "date": "2023-03-20",
+        "cumulative": 3913342
+      },
+      {
+        "date": "2023-03-27",
+        "cumulative": 4228666
+      },
+      {
+        "date": "2023-04-03",
+        "cumulative": 6505109
+      },
+      {
+        "date": "2023-04-10",
+        "cumulative": 6619609
+      },
+      {
+        "date": "2023-04-17",
+        "cumulative": 6794159
+      },
+      {
+        "date": "2023-04-24",
+        "cumulative": 9033659
+      },
+      {
+        "date": "2023-05-01",
+        "cumulative": 12214859
+      },
+      {
+        "date": "2023-05-08",
+        "cumulative": 12540084
+      },
+      {
+        "date": "2023-05-15",
+        "cumulative": 12575334
+      },
+      {
+        "date": "2023-05-22",
+        "cumulative": 12579334
+      },
+      {
+        "date": "2023-07-17",
+        "cumulative": 12629334
+      },
+      {
+        "date": "2023-12-25",
+        "cumulative": 12632324
+      }
+    ],
+    "Allan Domb": [
+      {
+        "date": "2022-12-26",
+        "cumulative": 1050
+      },
+      {
+        "date": "2023-01-02",
+        "cumulative": 11950
+      },
+      {
+        "date": "2023-01-09",
+        "cumulative": 28275
+      },
+      {
+        "date": "2023-01-16",
+        "cumulative": 311808
+      },
+      {
+        "date": "2023-01-23",
+        "cumulative": 324158
+      },
+      {
+        "date": "2023-01-30",
+        "cumulative": 349508
+      },
+      {
+        "date": "2023-02-06",
+        "cumulative": 368871
+      },
+      {
+        "date": "2023-02-13",
+        "cumulative": 377741
+      },
+      {
+        "date": "2023-02-20",
+        "cumulative": 404747
+      },
+      {
+        "date": "2023-02-27",
+        "cumulative": 458072
+      },
+      {
+        "date": "2023-03-06",
+        "cumulative": 521842
+      },
+      {
+        "date": "2023-03-13",
+        "cumulative": 2543367
+      },
+      {
+        "date": "2023-03-20",
+        "cumulative": 2608542
+      },
+      {
+        "date": "2023-03-27",
+        "cumulative": 2653919
+      },
+      {
+        "date": "2023-04-03",
+        "cumulative": 2728509
+      },
+      {
+        "date": "2023-04-10",
+        "cumulative": 4255679
+      },
+      {
+        "date": "2023-04-17",
+        "cumulative": 4320954
+      },
+      {
+        "date": "2023-04-24",
+        "cumulative": 5037925
+      },
+      {
+        "date": "2023-05-01",
+        "cumulative": 6141066
+      },
+      {
+        "date": "2023-05-08",
+        "cumulative": 7882291
+      },
+      {
+        "date": "2023-05-15",
+        "cumulative": 8015891
+      },
+      {
+        "date": "2023-05-22",
+        "cumulative": 8045891
+      },
+      {
+        "date": "2023-05-29",
+        "cumulative": 8645891
+      },
+      {
+        "date": "2023-06-05",
+        "cumulative": 8984102
+      },
+      {
+        "date": "2023-06-12",
+        "cumulative": 9015172
+      },
+      {
+        "date": "2023-06-19",
+        "cumulative": 9054696
+      },
+      {
+        "date": "2023-06-26",
+        "cumulative": 9063081
+      },
+      {
+        "date": "2023-08-07",
+        "cumulative": 9063528
+      },
+      {
+        "date": "2023-08-21",
+        "cumulative": 9063582
+      },
+      {
+        "date": "2023-10-02",
+        "cumulative": 9067517
+      },
+      {
+        "date": "2023-11-20",
+        "cumulative": 9069017
+      },
+      {
+        "date": "2023-11-27",
+        "cumulative": 9069617
+      }
+    ],
+    "Cherelle Parker": [
+      {
+        "date": "2023-01-02",
+        "cumulative": 1130
+      },
+      {
+        "date": "2023-01-09",
+        "cumulative": 6169
+      },
+      {
+        "date": "2023-01-16",
+        "cumulative": 19811
+      },
+      {
+        "date": "2023-01-23",
+        "cumulative": 38040
+      },
+      {
+        "date": "2023-01-30",
+        "cumulative": 50985
+      },
+      {
+        "date": "2023-02-06",
+        "cumulative": 67080
+      },
+      {
+        "date": "2023-02-13",
+        "cumulative": 105785
+      },
+      {
+        "date": "2023-02-20",
+        "cumulative": 173586
+      },
+      {
+        "date": "2023-02-27",
+        "cumulative": 297961
+      },
+      {
+        "date": "2023-03-06",
+        "cumulative": 303916
+      },
+      {
+        "date": "2023-03-13",
+        "cumulative": 394881
+      },
+      {
+        "date": "2023-03-20",
+        "cumulative": 509666
+      },
+      {
+        "date": "2023-03-27",
+        "cumulative": 652414
+      },
+      {
+        "date": "2023-04-03",
+        "cumulative": 708128
+      },
+      {
+        "date": "2023-04-10",
+        "cumulative": 815453
+      },
+      {
+        "date": "2023-04-17",
+        "cumulative": 943207
+      },
+      {
+        "date": "2023-04-24",
+        "cumulative": 1106631
+      },
+      {
+        "date": "2023-05-01",
+        "cumulative": 1522354
+      },
+      {
+        "date": "2023-05-08",
+        "cumulative": 2029616
+      },
+      {
+        "date": "2023-05-15",
+        "cumulative": 2143107
+      },
+      {
+        "date": "2023-05-22",
+        "cumulative": 2166607
+      },
+      {
+        "date": "2023-05-29",
+        "cumulative": 2191857
+      },
+      {
+        "date": "2023-06-05",
+        "cumulative": 2219957
+      },
+      {
+        "date": "2023-06-12",
+        "cumulative": 2239324
+      },
+      {
+        "date": "2023-06-19",
+        "cumulative": 2296949
+      },
+      {
+        "date": "2023-06-26",
+        "cumulative": 2449399
+      },
+      {
+        "date": "2023-07-03",
+        "cumulative": 2506692
+      },
+      {
+        "date": "2023-07-10",
+        "cumulative": 2538892
+      },
+      {
+        "date": "2023-07-17",
+        "cumulative": 2628417
+      },
+      {
+        "date": "2023-07-24",
+        "cumulative": 2656442
+      },
+      {
+        "date": "2023-07-31",
+        "cumulative": 2695342
+      },
+      {
+        "date": "2023-08-07",
+        "cumulative": 2729817
+      },
+      {
+        "date": "2023-08-14",
+        "cumulative": 2746442
+      },
+      {
+        "date": "2023-08-21",
+        "cumulative": 2803042
+      },
+      {
+        "date": "2023-08-28",
+        "cumulative": 2836127
+      },
+      {
+        "date": "2023-09-04",
+        "cumulative": 2902161
+      },
+      {
+        "date": "2023-09-11",
+        "cumulative": 3032069
+      },
+      {
+        "date": "2023-09-18",
+        "cumulative": 3178782
+      },
+      {
+        "date": "2023-09-25",
+        "cumulative": 3263892
+      },
+      {
+        "date": "2023-10-02",
+        "cumulative": 3390142
+      },
+      {
+        "date": "2023-10-09",
+        "cumulative": 3494212
+      },
+      {
+        "date": "2023-10-16",
+        "cumulative": 3681900
+      },
+      {
+        "date": "2023-10-23",
+        "cumulative": 3886005
+      },
+      {
+        "date": "2023-10-30",
+        "cumulative": 4175220
+      },
+      {
+        "date": "2023-11-06",
+        "cumulative": 4212808
+      },
+      {
+        "date": "2023-11-13",
+        "cumulative": 4242608
+      },
+      {
+        "date": "2023-11-20",
+        "cumulative": 4250228
+      },
+      {
+        "date": "2023-11-27",
+        "cumulative": 4306466
+      },
+      {
+        "date": "2023-12-04",
+        "cumulative": 4310916
+      },
+      {
+        "date": "2023-12-11",
+        "cumulative": 4492966
+      },
+      {
+        "date": "2023-12-18",
+        "cumulative": 4569736
+      },
+      {
+        "date": "2023-12-25",
+        "cumulative": 4643645
+      }
+    ],
+    "Rebecca Rhynhart": [
+      {
+        "date": "2022-12-26",
+        "cumulative": 1125
+      },
+      {
+        "date": "2023-01-02",
+        "cumulative": 21835
+      },
+      {
+        "date": "2023-01-09",
+        "cumulative": 33547
+      },
+      {
+        "date": "2023-01-16",
+        "cumulative": 61496
+      },
+      {
+        "date": "2023-01-23",
+        "cumulative": 108991
+      },
+      {
+        "date": "2023-01-30",
+        "cumulative": 145666
+      },
+      {
+        "date": "2023-02-06",
+        "cumulative": 183891
+      },
+      {
+        "date": "2023-02-13",
+        "cumulative": 223835
+      },
+      {
+        "date": "2023-02-20",
+        "cumulative": 262672
+      },
+      {
+        "date": "2023-02-27",
+        "cumulative": 330925
+      },
+      {
+        "date": "2023-03-06",
+        "cumulative": 384898
+      },
+      {
+        "date": "2023-03-13",
+        "cumulative": 424205
+      },
+      {
+        "date": "2023-03-20",
+        "cumulative": 569018
+      },
+      {
+        "date": "2023-03-27",
+        "cumulative": 736424
+      },
+      {
+        "date": "2023-04-03",
+        "cumulative": 833410
+      },
+      {
+        "date": "2023-04-10",
+        "cumulative": 920969
+      },
+      {
+        "date": "2023-04-17",
+        "cumulative": 1054639
+      },
+      {
+        "date": "2023-04-24",
+        "cumulative": 1286941
+      },
+      {
+        "date": "2023-05-01",
+        "cumulative": 1655466
+      },
+      {
+        "date": "2023-05-08",
+        "cumulative": 2092861
+      },
+      {
+        "date": "2023-05-15",
+        "cumulative": 2127221
+      },
+      {
+        "date": "2023-05-22",
+        "cumulative": 2128056
+      },
+      {
+        "date": "2023-06-05",
+        "cumulative": 2135162
+      },
+      {
+        "date": "2023-06-12",
+        "cumulative": 2147662
+      },
+      {
+        "date": "2023-06-19",
+        "cumulative": 2153002
+      },
+      {
+        "date": "2023-06-26",
+        "cumulative": 2153502
+      },
+      {
+        "date": "2023-07-03",
+        "cumulative": 2153507
+      },
+      {
+        "date": "2023-07-10",
+        "cumulative": 2154007
+      },
+      {
+        "date": "2023-07-31",
+        "cumulative": 2154012
+      },
+      {
+        "date": "2023-09-04",
+        "cumulative": 2158281
+      },
+      {
+        "date": "2023-10-23",
+        "cumulative": 2159231
+      },
+      {
+        "date": "2023-12-11",
+        "cumulative": 2200549
+      },
+      {
+        "date": "2023-12-25",
+        "cumulative": 2200681
+      }
+    ],
+    "Helen Gym": [
+      {
+        "date": "2022-12-26",
+        "cumulative": 2118
+      },
+      {
+        "date": "2023-01-02",
+        "cumulative": 28129
+      },
+      {
+        "date": "2023-01-09",
+        "cumulative": 55349
+      },
+      {
+        "date": "2023-01-16",
+        "cumulative": 71019
+      },
+      {
+        "date": "2023-01-23",
+        "cumulative": 112785
+      },
+      {
+        "date": "2023-01-30",
+        "cumulative": 142307
+      },
+      {
+        "date": "2023-02-06",
+        "cumulative": 170770
+      },
+      {
+        "date": "2023-02-13",
+        "cumulative": 192710
+      },
+      {
+        "date": "2023-02-20",
+        "cumulative": 256436
+      },
+      {
+        "date": "2023-02-27",
+        "cumulative": 333049
+      },
+      {
+        "date": "2023-03-06",
+        "cumulative": 369486
+      },
+      {
+        "date": "2023-03-13",
+        "cumulative": 465472
+      },
+      {
+        "date": "2023-03-20",
+        "cumulative": 672303
+      },
+      {
+        "date": "2023-03-27",
+        "cumulative": 798875
+      },
+      {
+        "date": "2023-04-03",
+        "cumulative": 834971
+      },
+      {
+        "date": "2023-04-10",
+        "cumulative": 942644
+      },
+      {
+        "date": "2023-04-17",
+        "cumulative": 984151
+      },
+      {
+        "date": "2023-04-24",
+        "cumulative": 1091047
+      },
+      {
+        "date": "2023-05-01",
+        "cumulative": 1222911
+      },
+      {
+        "date": "2023-05-08",
+        "cumulative": 1389122
+      },
+      {
+        "date": "2023-05-15",
+        "cumulative": 1426365
+      },
+      {
+        "date": "2023-05-22",
+        "cumulative": 1427365
+      },
+      {
+        "date": "2023-05-29",
+        "cumulative": 1427691
+      },
+      {
+        "date": "2023-06-05",
+        "cumulative": 1479194
+      },
+      {
+        "date": "2023-06-12",
+        "cumulative": 1479429
+      },
+      {
+        "date": "2023-06-19",
+        "cumulative": 1483437
+      },
+      {
+        "date": "2023-06-26",
+        "cumulative": 1483738
+      },
+      {
+        "date": "2023-07-03",
+        "cumulative": 1483941
+      },
+      {
+        "date": "2023-07-10",
+        "cumulative": 1484066
+      },
+      {
+        "date": "2023-07-17",
+        "cumulative": 1484166
+      },
+      {
+        "date": "2023-07-24",
+        "cumulative": 1484242
+      },
+      {
+        "date": "2023-07-31",
+        "cumulative": 1484460
+      },
+      {
+        "date": "2023-08-07",
+        "cumulative": 1484510
+      },
+      {
+        "date": "2023-08-14",
+        "cumulative": 1484660
+      },
+      {
+        "date": "2023-08-21",
+        "cumulative": 1484695
+      },
+      {
+        "date": "2023-08-28",
+        "cumulative": 1484896
+      },
+      {
+        "date": "2023-09-04",
+        "cumulative": 1484956
+      },
+      {
+        "date": "2023-09-11",
+        "cumulative": 1485106
+      },
+      {
+        "date": "2023-09-18",
+        "cumulative": 1485156
+      },
+      {
+        "date": "2023-09-25",
+        "cumulative": 1485267
+      },
+      {
+        "date": "2023-10-02",
+        "cumulative": 1485350
+      },
+      {
+        "date": "2023-10-09",
+        "cumulative": 1485410
+      },
+      {
+        "date": "2023-10-16",
+        "cumulative": 1485445
+      },
+      {
+        "date": "2023-10-23",
+        "cumulative": 1485471
+      },
+      {
+        "date": "2023-10-30",
+        "cumulative": 1485609
+      },
+      {
+        "date": "2023-11-06",
+        "cumulative": 1485629
+      },
+      {
+        "date": "2023-11-13",
+        "cumulative": 1485704
+      },
+      {
+        "date": "2023-11-20",
+        "cumulative": 1485714
+      },
+      {
+        "date": "2023-11-27",
+        "cumulative": 1485835
+      },
+      {
+        "date": "2023-12-04",
+        "cumulative": 1485868
+      },
+      {
+        "date": "2023-12-11",
+        "cumulative": 1485908
+      },
+      {
+        "date": "2023-12-25",
+        "cumulative": 1487335
+      }
+    ],
+    "David Oh": [
+      {
+        "date": "2023-01-02",
+        "cumulative": 2300
+      },
+      {
+        "date": "2023-01-16",
+        "cumulative": 6663
+      },
+      {
+        "date": "2023-01-23",
+        "cumulative": 7768
+      },
+      {
+        "date": "2023-01-30",
+        "cumulative": 8925
+      },
+      {
+        "date": "2023-02-06",
+        "cumulative": 9925
+      },
+      {
+        "date": "2023-02-13",
+        "cumulative": 10855
+      },
+      {
+        "date": "2023-02-20",
+        "cumulative": 10960
+      },
+      {
+        "date": "2023-02-27",
+        "cumulative": 12660
+      },
+      {
+        "date": "2023-03-06",
+        "cumulative": 13910
+      },
+      {
+        "date": "2023-03-13",
+        "cumulative": 14260
+      },
+      {
+        "date": "2023-03-20",
+        "cumulative": 14365
+      },
+      {
+        "date": "2023-03-27",
+        "cumulative": 19835
+      },
+      {
+        "date": "2023-04-03",
+        "cumulative": 105085
+      },
+      {
+        "date": "2023-04-10",
+        "cumulative": 119285
+      },
+      {
+        "date": "2023-04-17",
+        "cumulative": 119385
+      },
+      {
+        "date": "2023-04-24",
+        "cumulative": 125840
+      },
+      {
+        "date": "2023-05-01",
+        "cumulative": 140318
+      },
+      {
+        "date": "2023-05-08",
+        "cumulative": 342898
+      },
+      {
+        "date": "2023-05-15",
+        "cumulative": 363003
+      },
+      {
+        "date": "2023-05-22",
+        "cumulative": 363008
+      },
+      {
+        "date": "2023-06-05",
+        "cumulative": 372622
+      },
+      {
+        "date": "2023-06-12",
+        "cumulative": 379082
+      },
+      {
+        "date": "2023-06-19",
+        "cumulative": 379182
+      },
+      {
+        "date": "2023-06-26",
+        "cumulative": 385667
+      },
+      {
+        "date": "2023-07-03",
+        "cumulative": 387129
+      },
+      {
+        "date": "2023-07-10",
+        "cumulative": 387279
+      },
+      {
+        "date": "2023-07-17",
+        "cumulative": 391429
+      },
+      {
+        "date": "2023-07-24",
+        "cumulative": 392034
+      },
+      {
+        "date": "2023-08-07",
+        "cumulative": 395771
+      },
+      {
+        "date": "2023-08-14",
+        "cumulative": 450747
+      },
+      {
+        "date": "2023-08-21",
+        "cumulative": 450752
+      },
+      {
+        "date": "2023-08-28",
+        "cumulative": 451127
+      },
+      {
+        "date": "2023-09-04",
+        "cumulative": 462164
+      },
+      {
+        "date": "2023-09-11",
+        "cumulative": 462714
+      },
+      {
+        "date": "2023-09-18",
+        "cumulative": 469597
+      },
+      {
+        "date": "2023-10-02",
+        "cumulative": 469627
+      },
+      {
+        "date": "2023-10-09",
+        "cumulative": 470127
+      },
+      {
+        "date": "2023-10-16",
+        "cumulative": 471027
+      },
+      {
+        "date": "2023-10-23",
+        "cumulative": 513907
+      },
+      {
+        "date": "2023-10-30",
+        "cumulative": 559582
+      },
+      {
+        "date": "2023-11-13",
+        "cumulative": 566482
+      },
+      {
+        "date": "2023-11-20",
+        "cumulative": 568094
+      },
+      {
+        "date": "2023-11-27",
+        "cumulative": 572499
+      },
+      {
+        "date": "2023-12-04",
+        "cumulative": 573459
+      },
+      {
+        "date": "2023-12-11",
+        "cumulative": 573476
+      },
+      {
+        "date": "2023-12-18",
+        "cumulative": 574476
+      },
+      {
+        "date": "2023-12-25",
+        "cumulative": 574525
+      }
+    ]
+  },
+  "citywide_by_office": [
+    {
+      "office": "Mayor",
+      "total": 31422861
+    },
+    {
+      "office": "City Council At-Large",
+      "total": 6138282
+    },
+    {
+      "office": "City Council",
+      "total": 3719082
+    },
+    {
+      "office": "Sheriff",
+      "total": 873163
+    },
+    {
+      "office": "City Controller",
+      "total": 839461
+    },
+    {
+      "office": "City Commissioner",
+      "total": 455532
+    },
+    {
+      "office": "Judge of the Superior Court",
+      "total": 193999
+    }
+  ],
+  "top_payees": [
+    {
+      "name": "Impact Politics",
+      "amount": 7904996.06
+    },
+    {
+      "name": "Lc Media Llc",
+      "amount": 7139000.0
+    },
+    {
+      "name": "Allan Domb For Philadelphia",
+      "amount": 5072344.0
+    },
+    {
+      "name": "Gmmb",
+      "amount": 1447496.75
+    },
+    {
+      "name": "Screen Strategies Media",
+      "amount": 1437000.0
+    },
+    {
+      "name": "Al Media",
+      "amount": 1345420.0
+    },
+    {
+      "name": "Research Analytics Group Llc",
+      "amount": 1180000.0
+    },
+    {
+      "name": "Gps Impact",
+      "amount": 1049175.54
+    },
+    {
+      "name": "Paychex",
+      "amount": 942017.48
+    },
+    {
+      "name": "The Strategy Group",
+      "amount": 767701.93
+    },
+    {
+      "name": "Payroll Data Processing Inc.",
+      "amount": 541700.85
+    },
+    {
+      "name": "Battleaxe",
+      "amount": 511961.49
+    },
+    {
+      "name": "Mainstream Marketing Llc",
+      "amount": 469693.06
+    },
+    {
+      "name": "Magnus Pearson",
+      "amount": 348379.87
+    },
+    {
+      "name": "Greenberg Traurig Llp",
+      "amount": 346854.5
+    }
+  ],
+  "meta": {
+    "source": "OpenDataPhilly / Philadelphia Board of Ethics campaign finance reports (phl.carto.com)",
+    "scope": "2023 Philadelphia Mayoral race, all filed 2023 contributions & expenditures",
+    "generated_note": "candidate_election_outcome is not populated in the source dataset; outcomes here are added from certified public results."
+  }
+}
+</script>
+
+<script id="council-data-blob" type="application/json">
+{
+  "at_large": [
+    {
+      "name": "Nina Ahmad",
+      "party": "Democratic",
+      "total_raised": 1051787,
+      "total_spent": 1203561.05,
+      "num_contributions": 466,
+      "won": true
+    },
+    {
+      "name": "Rue Landau",
+      "party": "Democratic",
+      "total_raised": 589098,
+      "total_spent": 640237.68,
+      "num_contributions": 919,
+      "won": true
+    },
+    {
+      "name": "Kendra Brooks",
+      "party": "Working Families",
+      "total_raised": 519563,
+      "total_spent": 607404.56,
+      "num_contributions": 1815,
+      "won": true
+    },
+    {
+      "name": "Katherine Gilmore Richardson",
+      "party": "Democratic",
+      "total_raised": 505131,
+      "total_spent": 558941.86,
+      "num_contributions": 388,
+      "won": true
+    },
+    {
+      "name": "Nicolas O'Rourke",
+      "party": "Working Families",
+      "total_raised": 450639,
+      "total_spent": 499032.27,
+      "num_contributions": 1519,
+      "won": true
+    },
+    {
+      "name": "Isaiah Thomas",
+      "party": "Democratic",
+      "total_raised": 410525,
+      "total_spent": 513955.39,
+      "num_contributions": 420,
+      "won": true
+    },
+    {
+      "name": "Eryn Santamoor",
+      "party": "Democratic",
+      "total_raised": 389682,
+      "total_spent": 430680.95,
+      "num_contributions": 599,
+      "won": false
+    },
+    {
+      "name": "James Hasher",
+      "party": "Republican",
+      "total_raised": 369285,
+      "total_spent": 360998.34,
+      "num_contributions": 217,
+      "won": false
+    },
+    {
+      "name": "Jim Harrity",
+      "party": "Democratic",
+      "total_raised": 343825,
+      "total_spent": 432291.18,
+      "num_contributions": 261,
+      "won": true
+    },
+    {
+      "name": "Job Itzkowitz",
+      "party": "Democratic",
+      "total_raised": 267058,
+      "total_spent": 229460.07,
+      "num_contributions": 552,
+      "won": false
+    },
+    {
+      "name": "Amanda McIlmurray",
+      "party": "Democratic",
+      "total_raised": 258072,
+      "total_spent": 301525.04,
+      "num_contributions": 974,
+      "won": false
+    },
+    {
+      "name": "Erika Almiron",
+      "party": "Democratic",
+      "total_raised": 203978,
+      "total_spent": 222603.78,
+      "num_contributions": 440,
+      "won": false
+    },
+    {
+      "name": "Donavan West",
+      "party": "Democratic",
+      "total_raised": 163870,
+      "total_spent": 156766.51,
+      "num_contributions": 243,
+      "won": false
+    },
+    {
+      "name": "Drew Murray",
+      "party": "Republican",
+      "total_raised": 160996,
+      "total_spent": 197685.18,
+      "num_contributions": 231,
+      "won": false
+    },
+    {
+      "name": "John B Kelly III",
+      "party": "Democratic",
+      "total_raised": 101102,
+      "total_spent": 158718.52,
+      "num_contributions": 163,
+      "won": false
+    },
+    {
+      "name": "Sherrie Cohen",
+      "party": "Democratic",
+      "total_raised": 66408,
+      "total_spent": 92862.76,
+      "num_contributions": 131,
+      "won": false
+    },
+    {
+      "name": "Jalon Alexander",
+      "party": "Democratic",
+      "total_raised": 60565,
+      "total_spent": 51429.53,
+      "num_contributions": 130,
+      "won": false
+    },
+    {
+      "name": "Sam Oropeza",
+      "party": "Democratic",
+      "total_raised": 58376,
+      "total_spent": 55204.97,
+      "num_contributions": 147,
+      "won": false
+    },
+    {
+      "name": "Max Tuttleman",
+      "party": "Democratic",
+      "total_raised": 52638,
+      "total_spent": 136794.54,
+      "num_contributions": 67,
+      "won": false
+    },
+    {
+      "name": "Luz Colon",
+      "party": "Democratic",
+      "total_raised": 27491,
+      "total_spent": 26838.87,
+      "num_contributions": 119,
+      "won": false
+    },
+    {
+      "name": "Abu Edwards",
+      "party": "Democratic",
+      "total_raised": 24890,
+      "total_spent": 28637.68,
+      "num_contributions": 45,
+      "won": false
+    },
+    {
+      "name": "Charles Reyes",
+      "party": "Democratic",
+      "total_raised": 17381,
+      "total_spent": 14274.32,
+      "num_contributions": 57,
+      "won": false
+    },
+    {
+      "name": "Christopher Gladstone Booth",
+      "party": "Democratic",
+      "total_raised": 13269,
+      "total_spent": 12787.05,
+      "num_contributions": 67,
+      "won": false
+    },
+    {
+      "name": "Michelle Prettyman",
+      "party": "Democratic",
+      "total_raised": 8280,
+      "total_spent": 9189.0,
+      "num_contributions": 10,
+      "won": false
+    },
+    {
+      "name": "Curtis Segers",
+      "party": "Democratic",
+      "total_raised": 6145,
+      "total_spent": 6002.62,
+      "num_contributions": 67,
+      "won": false
+    },
+    {
+      "name": "Francis Cristinzio",
+      "party": "Republican",
+      "total_raised": 5525,
+      "total_spent": 4425.0,
+      "num_contributions": 16,
+      "won": false
+    },
+    {
+      "name": "Gary Grisafi",
+      "party": "Republican",
+      "total_raised": 4671,
+      "total_spent": 2647.0,
+      "num_contributions": 6,
+      "won": false
+    },
+    {
+      "name": "Ogbonna Paul Hagins",
+      "party": "Democratic",
+      "total_raised": 4278,
+      "total_spent": 4189.62,
+      "num_contributions": 23,
+      "won": false
+    },
+    {
+      "name": "Melissa Robbins",
+      "party": "Democratic",
+      "total_raised": 2182,
+      "total_spent": 3046.71,
+      "num_contributions": 18,
+      "won": false
+    },
+    {
+      "name": "Daniel Orsino",
+      "party": "Democratic",
+      "total_raised": 1572,
+      "total_spent": 1574.34,
+      "num_contributions": 16,
+      "won": false
+    }
+  ],
+  "districts": [
+    {
+      "district": "District 2",
+      "note": "Kenyatta Johnson (D, incumbent) ran unopposed.",
+      "candidates": [
+        {
+          "name": "Kenyatta Johnson",
+          "party": "Democratic",
+          "total_raised": 568528,
+          "won": true
+        }
+      ]
+    },
+    {
+      "district": "District 3",
+      "note": "Jamie Gauthier (D, incumbent) defeated challenger Jabari Jones.",
+      "candidates": [
+        {
+          "name": "Jamie Gauthier",
+          "party": "Democratic",
+          "total_raised": 401037,
+          "won": true
+        },
+        {
+          "name": "Jabari Jones",
+          "party": "Democratic",
+          "total_raised": 78276,
+          "won": false
+        }
+      ]
+    },
+    {
+      "district": "District 4",
+      "note": "Curtis Jones Jr. (D, incumbent) ran unopposed; minimal 2023 filings in this dataset.",
+      "candidates": [
+        {
+          "name": "Darrel Smith, Jr",
+          "party": "Democratic",
+          "total_raised": 5250,
+          "won": false
+        }
+      ]
+    },
+    {
+      "district": "District 5",
+      "note": "Jeffery \"Jay\" Young Jr. (D) won an open seat after two primary challengers were disqualified from the ballot.",
+      "candidates": [
+        {
+          "name": "Jeffery Young",
+          "party": "Democratic",
+          "total_raised": 150536,
+          "won": true
+        },
+        {
+          "name": "Patrick Griffin",
+          "party": "Democratic",
+          "total_raised": 23943,
+          "won": false
+        },
+        {
+          "name": "Curtis Wilkerson",
+          "party": "Democratic",
+          "total_raised": 16000,
+          "won": false
+        },
+        {
+          "name": "Aissia Richardson",
+          "party": "Democratic",
+          "total_raised": 5450,
+          "won": false
+        }
+      ]
+    },
+    {
+      "district": "District 6",
+      "note": "Mike Driscoll (D, incumbent) ran unopposed.",
+      "candidates": [
+        {
+          "name": "Mike Driscoll",
+          "party": "Democratic",
+          "total_raised": 249805,
+          "won": true
+        }
+      ]
+    },
+    {
+      "district": "District 7",
+      "note": "Quetcy Lozada (D, incumbent) defeated challenger Andres Celin.",
+      "candidates": [
+        {
+          "name": "Andres Celin",
+          "party": "Democratic",
+          "total_raised": 113745,
+          "won": false
+        }
+      ]
+    },
+    {
+      "district": "District 8",
+      "note": "Cindy Bass (D, incumbent) narrowly defeated Seth Anderson-Oberman.",
+      "candidates": [
+        {
+          "name": "Cindy Bass",
+          "party": "Democratic",
+          "total_raised": 503247,
+          "won": true
+        },
+        {
+          "name": "Seth Anderson-Oberman",
+          "party": "Democratic",
+          "total_raised": 229910,
+          "won": false
+        }
+      ]
+    },
+    {
+      "district": "District 9",
+      "note": "Anthony Phillips (D, incumbent) defeated Yvette Young.",
+      "candidates": [
+        {
+          "name": "Anthony Phillips",
+          "party": "Democratic",
+          "total_raised": 303510,
+          "won": true
+        },
+        {
+          "name": "Yvette Young",
+          "party": "Democratic",
+          "total_raised": 11156,
+          "won": false
+        },
+        {
+          "name": "Janay Hawthorne",
+          "party": "Democratic",
+          "total_raised": 10335,
+          "won": false
+        }
+      ]
+    },
+    {
+      "district": "District 10",
+      "note": "Brian O'Neill (R, incumbent) defeated Gary Masino (D) - the only Republican-held council seat, and the only competitive general election among the districts.",
+      "candidates": [
+        {
+          "name": "Gary Masino",
+          "party": "Democratic",
+          "total_raised": 760484,
+          "won": false
+        },
+        {
+          "name": "Brian O'Neill",
+          "party": "Republican",
+          "total_raised": 287870,
+          "won": true
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "source": "OpenDataPhilly / Philadelphia Board of Ethics campaign finance reports (phl.carto.com)",
+    "scope": "2023 Philadelphia City Council races (at-large and district), all filed 2023 contributions & expenditures",
+    "outcomes_note": "Winners are added from certified public results (Philadelphia City Commissioners, Nov 2023 general); not present in the source dataset."
+  }
+}
+</script>
+
+<script>
+const DATA = JSON.parse(document.getElementById('data-blob').textContent);
+const COUNCIL = JSON.parse(document.getElementById('council-data-blob').textContent);
+const fmt$ = (n, compact) => {
+  if (compact) {
+    if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(n >= 1e7 ? 1 : 2).replace(/\.0$/,'') + 'M';
+    if (Math.abs(n) >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
+    return '$' + Math.round(n);
+  }
+  return '$' + Math.round(n).toLocaleString('en-US');
+};
+const tooltip = document.getElementById('tooltip');
+function showTip(x, y, html) {
+  tooltip.innerHTML = html;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = (y - 10) + 'px';
+  tooltip.style.opacity = 1;
+}
+function hideTip() { tooltip.style.opacity = 0; }
+
+const SERIES = ['var(--series-1)','var(--series-2)','var(--series-3)','var(--series-4)','var(--series-5)','var(--series-6)','var(--series-7)','var(--series-8)'];
+
+/* ---------------- Stat row ---------------- */
+(function statRow(){
+  const cands = DATA.candidates;
+  const totalRaised = cands.reduce((s,c)=>s+c.total_raised,0);
+  const top2 = [...cands].sort((a,b)=>b.total_raised-a.total_raised).slice(0,2);
+  const top2SelfPct = (100 * top2.reduce((s,c)=>s+c.self_funded,0) / top2.reduce((s,c)=>s+c.total_raised,0)).toFixed(0);
+  const ranked = [...cands].sort((a,b)=>b.total_raised-a.total_raised);
+  const winnerRank = ranked.findIndex(c=>c.outcome.startsWith('Won Democratic')) + 1;
+  const tiles = [
+    {label:'Total raised, 2023 mayoral field', value: fmt$(totalRaised, true), sub: cands.length + ' candidates'},
+    {label:'Self-funded share, top 2 fundraisers', value: top2SelfPct + '%', sub: top2.map(c=>c.name).join(' & ')},
+    {label:'Winner’s rank by dollars raised', value: '#' + winnerRank + ' of ' + cands.length, sub: 'Cherelle Parker — became mayor'},
+  ];
+  document.getElementById('stat-row').innerHTML = tiles.map(t => `
+    <div class="stat-tile">
+      <div class="label">${t.label}</div>
+      <div class="value">${t.value}</div>
+      <div class="sub">${t.sub}</div>
+    </div>`).join('');
+})();
+
+/* ---------------- 01 Money race ---------------- */
+(function moneyRace(){
+  const classOrder = ['Individual','Self-funded','PAC / union / committee','Business entity'];
+  const classColor = {'Individual':SERIES[0], 'Self-funded':SERIES[1], 'PAC / union / committee':SERIES[2], 'Business entity':SERIES[3]};
+  document.getElementById('race-legend').innerHTML = classOrder.map((k,i)=>`
+    <div class="legend-item"><span class="swatch" style="background:${classColor[k]}"></span>${k}</div>`).join('');
+
+  const ranked = [...DATA.candidates].sort((a,b)=>b.total_raised-a.total_raised);
+  const max = ranked[0].total_raised;
+
+  const rows = ranked.map(c => {
+    const segs = classOrder
+      .filter(k => c.donor_class_breakdown[k])
+      .map(k => {
+        const pct = 100 * c.donor_class_breakdown[k] / c.total_raised;
+        return `<div class="bar-seg" style="width:${pct}%;background:${classColor[k]}" data-tip="${k}: ${fmt$(c.donor_class_breakdown[k])}"></div>`;
+      }).join('');
+    const barWidthPct = 100 * c.total_raised / max;
+    const pill = c.outcome.startsWith('Won Democratic')
+      ? '<span class="pill win">Won &middot; Mayor</span>'
+      : c.outcome.includes('Republican')
+        ? `<span class="pill lose">${c.outcome}</span>`
+        : '<span class="pill lose">Lost primary</span>';
+    return `
+      <div class="race-row">
+        <div class="race-label">
+          <span class="race-name">${c.name}<span class="party">${c.party === 'Democratic' ? 'D' : 'R'}</span>${pill}</span>
+          <span class="race-total tnum">${fmt$(c.total_raised, true)}</span>
+        </div>
+        <div class="bar-track" style="width:${barWidthPct}%">${segs}</div>
+      </div>`;
+  }).join('');
+  document.getElementById('race-chart').innerHTML = rows;
+
+  document.querySelectorAll('#race-chart .bar-seg').forEach(seg => {
+    seg.addEventListener('mousemove', e => showTip(e.clientX, e.clientY, seg.dataset.tip));
+    seg.addEventListener('mouseleave', hideTip);
+  });
+
+  const table = document.getElementById('race-table');
+  table.innerHTML = `<thead><tr><th>Candidate</th><th class="num">Total raised</th><th class="num">Total spent</th><th class="num">Self-funded %</th><th>Outcome</th></tr></thead>
+    <tbody>${ranked.map(c=>`<tr><td>${c.name}</td><td class="num tnum">${fmt$(c.total_raised)}</td><td class="num tnum">${fmt$(c.total_spent)}</td><td class="num tnum">${c.pct_self_funded}%</td><td>${c.outcome}</td></tr>`).join('')}</tbody>`;
+})();
+
+/* ---------------- 02 Timeline ---------------- */
+(function timeline(){
+  const names = Object.keys(DATA.timeline);
+  const colorOf = {}; names.forEach((n,i)=>colorOf[n]=SERIES[i%SERIES.length]);
+  document.getElementById('timeline-legend').innerHTML = names.map(n=>`
+    <div class="legend-item"><span class="swatch" style="background:${colorOf[n]}"></span>${n}</div>`).join('');
+
+  const W = 920, H = 380, M = {top:16,right:118,bottom:30,left:56};
+  const plotW = W - M.left - M.right, plotH = H - M.top - M.bottom;
+
+  const parse = d => new Date(d+'T00:00:00Z').getTime();
+  let minT = Infinity, maxT = -Infinity, maxV = 0;
+  Object.values(DATA.timeline).forEach(series => series.forEach(p=>{
+    const t = parse(p.date);
+    minT = Math.min(minT, t); maxT = Math.max(maxT, t);
+    maxV = Math.max(maxV, p.cumulative);
+  }));
+  const yearStart = parse('2023-01-01'), yearEnd = parse('2023-12-31');
+  minT = Math.min(minT, yearStart); maxT = Math.max(maxT, yearEnd);
+
+  const x = t => M.left + plotW * (t - minT) / (maxT - minT);
+  const y = v => M.top + plotH * (1 - v / maxV);
+
+  const yTicks = [0, 0.25, 0.5, 0.75, 1].map(f => Math.round(maxV*f));
+  const gridlines = yTicks.map(v => `
+    <line class="gridline" x1="${M.left}" x2="${W-M.right}" y1="${y(v)}" y2="${y(v)}" />
+    <text class="axis-text" x="${M.left-8}" y="${y(v)+4}" text-anchor="end">${fmt$(v,true)}</text>`).join('');
+
+  const months = [0,2,4,6,8,10].map(m => new Date(Date.UTC(2023,m,1)).getTime());
+  const monthLabels = months.map(t => `<text class="axis-text" x="${x(t)}" y="${H-M.bottom+18}" text-anchor="middle">${new Date(t).toLocaleString('en-US',{month:'short',timeZone:'UTC'})}</text>`).join('');
+
+  const primary = parse('2023-05-16'), general = parse('2023-11-07');
+  const refLines = `
+    <line class="ref-line" x1="${x(primary)}" x2="${x(primary)}" y1="${M.top}" y2="${H-M.bottom}" />
+    <text class="ref-label" x="${x(primary)+5}" y="${M.top+10}">Primary</text>
+    <line class="ref-line" x1="${x(general)}" x2="${x(general)}" y1="${M.top}" y2="${H-M.bottom}" />
+    <text class="ref-label" x="${x(general)+5}" y="${M.top+10}">General</text>`;
+
+  let paths = '', dots = '', endLabels = '';
+  names.forEach(n => {
+    const series = DATA.timeline[n];
+    const d = series.map((p,i)=> (i===0?'M':'L') + x(parse(p.date)).toFixed(1) + ',' + y(p.cumulative).toFixed(1)).join(' ');
+    paths += `<path class="line-path" d="${d}" stroke="${colorOf[n]}" data-name="${n}"></path>`;
+    const last = series[series.length-1];
+    const lx = x(parse(last.date)), ly = y(last.cumulative);
+    dots += `<circle class="end-dot" cx="${lx}" cy="${ly}" r="4" fill="${colorOf[n]}" data-tip="<b>${n}</b>${fmt$(last.cumulative)} by year-end"></circle>`;
+    endLabels += `<text class="end-label" x="${lx+9}" y="${ly+4}" fill="${colorOf[n]}">${n.split(' ').slice(-1)[0]}</text>`;
+    series.forEach(p => {
+      dots += `<circle class="hit" cx="${x(parse(p.date))}" cy="${y(p.cumulative)}" r="7" fill="transparent" data-tip="<b>${n}</b>${new Date(parse(p.date)).toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'})}: ${fmt$(p.cumulative)}"></circle>`;
+    });
+  });
+
+  document.getElementById('timeline-chart').innerHTML = `
+    <svg class="chart" viewBox="0 0 ${W} ${H}">
+      ${gridlines}
+      <line class="axis-line" x1="${M.left}" x2="${W-M.right}" y1="${H-M.bottom}" y2="${H-M.bottom}" />
+      ${monthLabels}
+      ${refLines}
+      ${paths}
+      ${dots}
+      ${endLabels}
+    </svg>`;
+
+  document.querySelectorAll('#timeline-chart circle[data-tip]').forEach(el => {
+    el.addEventListener('mousemove', e => showTip(e.clientX, e.clientY, el.dataset.tip));
+    el.addEventListener('mouseleave', hideTip);
+  });
+
+  const allDates = [...new Set(Object.values(DATA.timeline).flat().map(p=>p.date))].sort();
+  const rows = allDates.slice(-10).map(d => {
+    const cells = names.map(n => {
+      const pt = DATA.timeline[n].find(p=>p.date===d);
+      return `<td class="num tnum">${pt ? fmt$(pt.cumulative) : '—'}</td>`;
+    }).join('');
+    return `<tr><td>${d}</td>${cells}</tr>`;
+  }).join('');
+  document.getElementById('timeline-table').innerHTML = `<thead><tr><th>Week of</th>${names.map(n=>`<th class="num">${n}</th>`).join('')}</tr></thead><tbody>${rows}</tbody>`;
+})();
+
+/* ---------------- 03 Geography ---------------- */
+(function geography(){
+  const cats = [
+    {key:'from_philly', label:'Philadelphia', color: SERIES[0]},
+    {key:'from_pa_other', label:'Rest of Pennsylvania', color: SERIES[1]},
+    {key:'from_out_of_state', label:'Out of state', color: SERIES[2]},
+  ];
+  document.getElementById('geo-legend').innerHTML = cats.map(c=>`
+    <div class="legend-item"><span class="swatch" style="background:${c.color}"></span>${c.label}</div>`).join('');
+
+  const top = [...DATA.candidates].sort((a,b)=>b.total_raised-a.total_raised).slice(0,8);
+  document.getElementById('geo-chart').innerHTML = top.map(c => {
+    const total = cats.reduce((s,cat)=>s+c[cat.key],0) || 1;
+    const segs = cats.map(cat => {
+      const pct = 100*c[cat.key]/total;
+      return `<div class="geo-seg" style="width:${pct}%;background:${cat.color}" data-tip="${cat.label}: ${fmt$(c[cat.key])} (${pct.toFixed(0)}%)"></div>`;
+    }).join('');
+    return `
+      <div class="geo-row">
+        <div class="geo-name">${c.name}</div>
+        <div class="geo-bar">${segs}</div>
+        <div class="geo-total">${fmt$(c.total_raised,true)}</div>
+      </div>`;
+  }).join('');
+  document.querySelectorAll('.geo-seg').forEach(seg => {
+    seg.addEventListener('mousemove', e => showTip(e.clientX, e.clientY, seg.dataset.tip));
+    seg.addEventListener('mouseleave', hideTip);
+  });
+})();
+
+/* ---------------- 04 Explorer ---------------- */
+(function explorer(){
+  const ranked = [...DATA.candidates].sort((a,b)=>b.total_raised-a.total_raised);
+  const sel = document.getElementById('cand-select');
+  sel.innerHTML = ranked.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
+
+  function render(name){
+    const c = DATA.candidates.find(x=>x.name===name);
+    document.getElementById('cand-meta').textContent =
+      `${fmt$(c.total_raised)} raised across ${c.num_contributions.toLocaleString()} contributions · avg ${fmt$(c.avg_contribution)}`;
+    document.querySelector('#donor-table tbody').innerHTML = c.top_donors.length
+      ? c.top_donors.map(d=>`<tr><td>${d.name}</td><td class="num tnum">${fmt$(d.amount)}</td></tr>`).join('')
+      : '<tr><td colspan="2" style="color:var(--ink-muted)">No non-self-funded donors on record.</td></tr>';
+  }
+  sel.addEventListener('change', () => render(sel.value));
+  render(ranked[0].name);
+
+  document.querySelector('#payee-table tbody').innerHTML = DATA.top_payees.map(p=>
+    `<tr><td>${p.name}</td><td class="num tnum">${fmt$(p.amount)}</td></tr>`).join('');
+})();
+
+/* ---------------- 05 Citywide ---------------- */
+(function citywide(){
+  const rows = DATA.citywide_by_office;
+  const max = rows[0].total;
+  document.getElementById('office-chart').innerHTML = rows.map(r => `
+    <div class="office-row">
+      <div class="office-name">${r.office}</div>
+      <div class="office-bar-track"><div class="office-bar" style="width:${100*r.total/max}%"></div></div>
+      <div class="office-value tnum">${fmt$(r.total, true)}</div>
+    </div>`).join('');
+})();
+
+/* ---------------- 06 City Council At-Large ---------------- */
+(function atLarge(){
+  const partyColor = {
+    'Democratic': 'var(--series-1)',
+    'Working Families': 'var(--series-6)',
+    'Republican': 'var(--series-8)',
+  };
+  document.getElementById('al-legend').innerHTML = Object.keys(partyColor).map(p => `
+    <div class="legend-item"><span class="swatch" style="background:${partyColor[p]}"></span>${p}</div>`).join('')
+    + `<div class="legend-item" style="margin-left:auto"><span class="swatch" style="background:var(--ink-muted);opacity:.5"></span>Did not win a seat</div>`;
+
+  const ranked = [...COUNCIL.at_large].sort((a,b)=>b.total_raised-a.total_raised);
+  const max = ranked[0].total_raised;
+  const cutoffPct = 100 * (ranked[6].total_raised + ranked[7].total_raised) / 2 / max;
+
+  const rows = ranked.map(c => {
+    const pct = 100 * c.total_raised / max;
+    const color = partyColor[c.party] || 'var(--ink-muted)';
+    return `
+      <div class="al-row">
+        <div class="al-name">${c.name}${c.won ? '<span class=\"pill win\">Won</span>' : ''}</div>
+        <div class="al-bar-track"><div class="al-bar ${c.won?'':'lost'}" style="width:${pct}%;background:${color}"></div></div>
+        <div class="al-value tnum">${fmt$(c.total_raised, true)}</div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('al-chart').innerHTML = `
+    <div class="cutoff-line" style="left:calc(200px + 12px + ${cutoffPct}%)"></div>
+    <div class="cutoff-label" style="left:calc(200px + 12px + ${cutoffPct}%)">7 seats &darr;</div>
+    ${rows}`;
+
+  document.getElementById('al-table').innerHTML = `<thead><tr><th>Candidate</th><th>Party</th><th class="num">Raised</th><th class="num">Spent</th><th>Result</th></tr></thead>
+    <tbody>${ranked.map(c=>`<tr><td>${c.name}</td><td>${c.party}</td><td class="num tnum">${fmt$(c.total_raised)}</td><td class="num tnum">${fmt$(c.total_spent)}</td><td>${c.won?'Won a seat':'—'}</td></tr>`).join('')}</tbody>`;
+})();
+
+/* ---------------- 07 City Council Districts ---------------- */
+(function districts(){
+  const partyColor = {
+    'Democratic': 'var(--series-1)',
+    'Republican': 'var(--series-8)',
+  };
+  document.getElementById('district-grid').innerHTML = COUNCIL.districts.map(d => {
+    const ranked = [...d.candidates].sort((a,b)=>b.total_raised-a.total_raised);
+    const max = ranked.length ? ranked[0].total_raised : 1;
+    const rows = ranked.map(c => {
+      const pct = 100 * c.total_raised / max;
+      const color = partyColor[c.party] || 'var(--ink-muted)';
+      return `
+        <div class="d-row">
+          <div class="d-name ${c.won?'':'lost'}">${c.name}${c.won ? ' <span class=\"pill win\">Won</span>' : ''}</div>
+          <div class="d-val tnum">${fmt$(c.total_raised, true)}</div>
+          <div class="d-bar-track"><div class="d-bar ${c.won?'':'lost'}" style="width:${pct}%;background:${color}"></div></div>
+        </div>`;
+    }).join('');
+    return `
+      <div class="district-card">
+        <h4>${d.district}</h4>
+        <div class="d-note">${d.note}</div>
+        ${rows}
+      </div>`;
+  }).join('');
+})();
+</script>
+</body>
+</html>
