@@ -2643,7 +2643,7 @@ const SERIES = ['var(--series-1)','var(--series-2)','var(--series-3)','var(--ser
   const tiles = [
     {label:'Total raised, 2023 mayoral field', value: fmt$(totalRaised, true), sub: cands.length + ' candidates'},
     {label:'Self-funded share, top 2 fundraisers', value: top2SelfPct + '%', sub: top2.map(c=>c.name).join(' & ')},
-    {label:'Winner’s rank by dollars raised', value: '#' + winnerRank + ' of ' + cands.length, sub: 'Cherelle Parker — became mayor'},
+    {label:'Winner’s rank by dollars raised', value: '#' + winnerRank + ' of ' + cands.length, sub: 'Cherelle Parker, became mayor'},
   ];
   document.getElementById('stat-row').innerHTML = tiles.map(t => `
     <div class="stat-tile">
