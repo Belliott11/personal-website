@@ -1,8 +1,8 @@
 :root{
   --bg:#f7f6f1;
   --text:#182440;
-  --muted:#5b6478;
-  --accent:#9c7a1f;
+  --muted:#666666;
+  --accent:#b8860b;
   --primary:#182440;
   --primary-text:#ffffff;
 }
@@ -10,9 +10,9 @@
 [data-theme='dark']{
   --bg:#0d1526;
   --text:#eef1f7;
-  --muted:#9aa6b8;
-  --accent:#e0b563;
-  --primary:#e0b563;
+  --muted:#999999;
+  --accent:#e0a938;
+  --primary:#e0a938;
   --primary-text:#101a2e;
 }
 
@@ -200,8 +200,8 @@ section[id] {
   transform: translateX(0);
 }
 
-a{color:var(--accent);text-decoration:underline}
-a:hover{text-decoration:none}
+a{color:var(--primary);text-decoration:underline}
+a:hover{text-decoration:none;color:var(--accent)}
 
 [data-theme='dark'] .site-header{border-bottom:1px solid rgba(255,255,255,0.1)}
 [data-theme='dark'] .portfolio-item{border:1px solid rgba(255,255,255,0.12)}
