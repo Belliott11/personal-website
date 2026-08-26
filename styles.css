@@ -37,9 +37,14 @@ body{margin:0;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;background:v
   padding: 12px 0; /* adds breathing room */
 }
 .site-title {
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
   margin: 0;
+}
+.site-title .accent-dot {
+  color: var(--accent);
 }
 .header-actions {
   display: flex;
@@ -116,8 +121,6 @@ section[id] {
   height: 20px;
   display: block;
 }
-.site-title{margin:0;display:inline-block}
-#home-button{background:none;border:0;font-size:20px;cursor:pointer;text-decoration:none;display:flex;align-items:center}
 #about, #projects, #contact{padding:40px 0}
 .hero{padding:56px 0}
 .hero-grid{display:flex;align-items:center;gap:48px;text-align:left}
