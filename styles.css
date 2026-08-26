@@ -84,12 +84,13 @@ html {
 section[id] {
   scroll-margin-top: 84px;
 }
-@media (max-width: 600px) {
+@media (max-width: 780px) {
   .site-nav {
     order: 3;
     width: 100%;
     justify-content: center;
-    gap: 20px;
+    gap: 16px;
+    flex-wrap: wrap;
     padding-top: 4px;
   }
   .site-nav a {
