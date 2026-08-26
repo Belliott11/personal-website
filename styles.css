@@ -113,10 +113,29 @@ section[id] {
 }
 .site-title{margin:0;display:inline-block}
 #home-button{background:none;border:0;font-size:20px;cursor:pointer;text-decoration:none;display:flex;align-items:center}
-.hero{padding:48px 0}
-.headshot{width:150px;height:150px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 24px;border:3px solid var(--accent)}
+.hero{padding:56px 0}
+.hero-grid{display:flex;align-items:center;gap:48px;text-align:left}
+.hero-text{flex:1;min-width:0}
+.hero-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.headshot{width:170px;height:170px;border-radius:50%;object-fit:cover;display:block;flex-shrink:0;border:3px solid var(--accent)}
 .lead{color:var(--muted);font-size:1.125rem}
-.btn{display:inline-block;padding:10px 14px;background:var(--accent);color:white;border-radius:6px;text-decoration:none}
+.eyebrow{text-transform:uppercase;letter-spacing:0.08em;font-size:0.8rem;font-weight:700;color:var(--accent);margin:0 0 8px}
+.btn{display:inline-block;padding:10px 18px;background:var(--accent);color:white;border-radius:6px;text-decoration:none;font-weight:500;border:1.5px solid var(--accent)}
+.btn:hover{text-decoration:none;filter:brightness(1.1)}
+.btn-outline{background:transparent;color:var(--accent)}
+.btn-outline:hover{background:var(--accent);color:#fff}
+
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,0,0,0.08);border:1px solid rgba(0,0,0,0.08);border-radius:10px;overflow:hidden;margin:0 0 48px}
+.stat{background:var(--bg);padding:22px 12px;text-align:center}
+.stat-num{display:block;font-size:1.6rem;font-weight:700;color:var(--text)}
+.stat-label{display:block;font-size:0.78rem;color:var(--muted);margin-top:4px}
+[data-theme='dark'] .stats-strip{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.08)}
+
+@media (max-width:700px){
+  .hero-grid{flex-direction:column;text-align:center}
+  .hero-actions{justify-content:center}
+  .stats-strip{grid-template-columns:repeat(2,1fr)}
+}
 .projects-list{list-style:none;padding:0}
 .projects-list li{padding:8px 0;border-bottom:1px dashed rgba(0,0,0,0.04)}
 .contact-form{max-width:500px;margin-top:24px}
