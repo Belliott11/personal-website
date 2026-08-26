@@ -113,6 +113,7 @@ section[id] {
 }
 .site-title{margin:0;display:inline-block}
 #home-button{background:none;border:0;font-size:20px;cursor:pointer;text-decoration:none;display:flex;align-items:center}
+#about, #projects, #contact{padding:40px 0}
 .hero{padding:56px 0}
 .hero-grid{display:flex;align-items:center;gap:48px;text-align:left}
 .hero-text{flex:1;min-width:0}
@@ -198,6 +199,7 @@ a:hover{text-decoration:none}
 @media (max-width:600px){
   .container{padding:16px}
   .hero{padding:28px 0}
+  #about, #projects, #contact{padding:28px 0}
   .portfolio-grid{grid-template-columns:1fr}
 }
 .icon-btn {
