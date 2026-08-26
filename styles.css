@@ -174,9 +174,6 @@ a.btn-outline:hover{background:var(--accent);color:var(--primary-text)}
 .portfolio-content p{margin:0 0 14px;color:var(--muted);font-size:0.95rem}
 .portfolio-link{color:var(--accent);text-decoration:none;font-weight:500;display:inline-block}
 .portfolio-link:hover{text-decoration:underline}
-.link-row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
-.portfolio-link-secondary{color:var(--muted);font-weight:400;font-size:0.9rem}
-.portfolio-link-secondary:hover{color:var(--accent)}
 
 /* Scroll animations */
 .fade-in {
