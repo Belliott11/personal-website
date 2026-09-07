@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =========================
      SCROLL ANIMATIONS
   ========================= */
-  const animatedElements = document.querySelectorAll('.fade-in, .slide-in');
+  const animatedElements = document.querySelectorAll('.fade-in');
 
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
@@ -59,22 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   animatedElements.forEach(el => observer.observe(el));
-
-  /* =========================
-     ACTIVE PAGE HIGHLIGHT
-  ========================= */
-  const path = window.location.pathname;
-
-  const homeBtn = document.querySelector('a[href="../index.html"], a[href="index.html"]');
-  const portfolioBtn = document.querySelector('a[href*="academic-writing"]');
-
-  if (homeBtn && (path === '/' || path.endsWith('index.html'))) {
-    homeBtn.classList.add('active');
-  }
-
-  if (portfolioBtn && path.includes('academic-writing')) {
-    portfolioBtn.classList.add('active');
-  }
 
   /* =========================
      CONTACT FORM
