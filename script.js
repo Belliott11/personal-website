@@ -13,12 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ========================= */
   const btn = document.getElementById('theme-toggle');
 
-  const savedTheme = localStorage.getItem('theme');
-  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  const currentTheme = savedTheme || systemTheme;
-
-  document.documentElement.setAttribute('data-theme', currentTheme);
-
+  // initial theme is set by the inline script in <head> (no flash on load)
   if (btn) {
     btn.addEventListener('click', () => {
       const nextTheme =

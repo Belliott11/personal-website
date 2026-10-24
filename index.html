@@ -15,8 +15,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))}catch(e){}</script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
   <div class="container header-container">
     <h1 class="site-title">Benjamin Elliott<span class="accent-dot">.</span></h1>
@@ -42,7 +44,7 @@
   </div>
 </header>
 
-  <main class="container">
+  <main id="main" class="container">
     <section id="hero" class="hero fade-in">
       <div class="hero-grid">
         <img src="images/Headshot.jpg" alt="Benjamin Elliott" class="headshot">
@@ -59,9 +61,9 @@
       </div>
     </section>
 
-    <section id="about" class="fade-in">
+    <section id="about" class="fade-in" aria-labelledby="about-title">
       <p class="eyebrow">Who I Am</p>
-      <h3>About</h3>
+      <h3 id="about-title">About</h3>
       <p>I am a political science student at Drexel University in the Honors Program, with academic interests in democratic theory and international relations. My work focuses on understanding how political systems function and how public opinion is shaped in an increasingly polarized environment.</p>
 
       <p>I currently serve as a Student Ambassador for Drexel University, leading campus tours and representing university initiatives at admissions events, and as an Intelligence Intern at DVIC, researching open-source intelligence on regional safety concerns and organized crime for finished intelligence products. I previously interned with the campaign for D'Angelo Virgo for Pennsylvania House of Representatives District 192, gaining hands-on experience in political organizing, outreach, and campaign strategy, and conducted independent qualitative research as a S.T.A.R. Research Scholar.</p>
@@ -69,9 +71,9 @@
       <p>Through Drexel's STAR Scholars program, I completed a research project titled <em>Tracing Institutional Memory: The History &amp; Leadership Transitions of Philadelphia Community Development Corporations</em>, examining how community-based organizations build, hold, and sometimes lose institutional knowledge through leadership change.</p>
     </section>
 
-    <section id="projects" class="fade-in">
+    <section id="projects" class="fade-in" aria-labelledby="projects-title">
       <p class="eyebrow">My Work</p>
-      <h3>Projects & Research</h3>
+      <h3 id="projects-title">Projects &amp; Research</h3>
       <div class="portfolio-grid">
         <div class="portfolio-item fade-in">
           <img src="images/CDC-Poster-Thumbnail.png" alt="Tracing Institutional Memory research poster">
@@ -114,9 +116,9 @@
       </div>
     </section>
 
-    <section id="contact" class="fade-in">
+    <section id="contact" class="fade-in" aria-labelledby="contact-title">
       <p class="eyebrow">Let's Connect</p>
-      <h3>Contact</h3>
+      <h3 id="contact-title">Contact</h3>
       <p>I am open to academic, research, and professional opportunities. Send me a message below or email directly at <a href="mailto:bre.sochi@gmail.com">bre.sochi@gmail.com</a>.</p>
       
       <form action="https://formspree.io/f/mkoqyvvo" method="POST" class="contact-form">

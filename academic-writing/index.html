@@ -9,8 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
+  <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))}catch(e){}</script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
   <div class="container header-container">
     <h1 class="site-title">Benjamin Elliott<span class="accent-dot">.</span></h1>
@@ -35,7 +37,7 @@
   </div>
 </header>
 
-  <main class="container">
+  <main id="main" class="container">
     <section id="portfolio">
       <h2>Academic Writing Portfolio</h2>
       <p>A collection of essays and analyses focused on political theory, public policy, media influence, and democratic systems.</p>
